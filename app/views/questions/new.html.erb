@@ -1,0 +1,43 @@
+<h1>Questions#new</h1>
+<p>Find me in app/views/questions/new.html.erb</p>
+<div class="container">
+
+
+  <%= form_for @question do |q| %>
+    <div class="form-row">
+      <%= q.label :question_text, "Question" %>
+      <%= q.text_field :question_text, class: "form-control" %>
+    </div>
+    <div class="form-row">
+      <%= q.label :description, "Description" %>
+      <%= q.text_area :description, class: "form-control" %>
+    </div>
+    <div class="form-row">
+      <%= q.label :expiry_date, "Expiry Date" %>
+      <%= q.date_field :expiry_date, class: "form-control" %>
+    </div>
+
+    <hr>
+
+    <h5> Options </h5>
+
+
+    <div class="form-row">
+      <%#= q.label :option_text, "Option 1" %>
+      <%#= q.text_area :option_text, class: "form-control" %>
+    </div>
+
+    <div class="form-row">
+      <%#= q.label :option_text, "Option 2" %>
+      <%#= q.text_area :option_text, class: "form-control" %>
+    </div>
+
+
+    <hr> 
+
+    <%= q.submit "Submit", class: "btn btn-primary" %>
+
+  <%end%>
+    <%# </div>
+    </div> %>
+</div>
