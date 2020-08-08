@@ -2,6 +2,8 @@
 <p>Find me in app/views/questions/show.html.erb</p>
 <div class="container">
 
+        <%= link_to "Delete", question_path(@question), method: "delete", data:{ confirm: "Are you sure you want to delete this poll"}, class: "btn btn-danger mb-2" %>
+
     <div class="card">
         <h5 class="card-header">User: <%= @question.user_id %></h5>
             <div class="card-body">
@@ -11,13 +13,19 @@
             </div>
     </div>
 
-    <%# = form_for %>
-   <%# collection_radio_buttons(:option, :question_ids, Question.all, :id, :display_option) %>
-    <% @question.options.each do |option| %>
 
-         <li> <%= option.option_text %></li>
+<%#= form_with scope: :sitter, url: profile_path, local: true do |form| %>
 
+    <%= form_for @question do |f| %>
+    <%= f.collection_radio_buttons(:option_ids, @options, :id, :option_text) %>
+
+        <%= f.submit 'Vote' %>
     <% end %>
+
+
+
+   
+    <%# <% end %> 
 
     <div class="card">
         <h3>Comments (<%= @question.comments.size %>)</h3>
