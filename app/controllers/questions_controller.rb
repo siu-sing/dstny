@@ -22,6 +22,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @comment = @question.comments
+    @comment = Comment.new
   end
 
   def destroy
@@ -37,4 +39,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
   end
 
+  def question_params
+    params.require(:question).permit(:user_id, :comment_text)
+  end
 end
