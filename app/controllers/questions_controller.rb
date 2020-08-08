@@ -11,11 +11,13 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
     @question.options.build
+    puts current_user
+    puts current_user.id
   end
 
   def create
     @question = Question.new(question_params)
-    @question['user_id'] = 1
+    @question['user_id'] = current_user.id
     @question.save
   end
 
@@ -40,16 +42,16 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:question_text, :description, :expiry_date, options_attributes:[:option_text])
+    params.require(:question).permit(:question_text, :description, :user_id, :comment_text, :expiry_date, options_attributes:[:option_text])
   end
 
   
-
   def set_question
     @question = Question.find(params[:id])
   end
 
-  def question_params
-    params.require(:question).permit(:user_id, :comment_text)
-  end
+  #INCORPORATED ABOVE INTO QUES_PARAMS
+  # def question_params
+  #   params.require(:question).permit(:user_id, :comment_text)
+  # end
 end
