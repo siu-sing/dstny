@@ -19,5 +19,8 @@
 
     <% end %>
 
-
+    <div class="card">
+        <h3>Comments (<%= @question.comments.size %>)</h3>
+        <%= render partial: 'questions/comment', collection: @question.comments.reverse %>
+    </div>
 </div>

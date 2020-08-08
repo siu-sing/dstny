@@ -10,6 +10,8 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @comment = @question.comments.new
+    @comment['user_id'] = current_user.id
   end
 
   def create
