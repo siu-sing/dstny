@@ -66,24 +66,9 @@
 					</button>
 				</form>
 			</div>
-		<%# Navbar ends %> 
-        
-      <% if user_signed_in? %>
-	    <%#= current_user.email %>
-      <li class="nav-item">
-        <%= link_to current_user.username, user_path(current_user), class:"text-decoration-none text-secondary mx-4" %>
-      </li>
-      <li class="nav-item">
-	    <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"text-decoration-none text-secondary"%>
-     </li>
-	      <% else %>
-	    <%#= link_to "sign up", new_user_registration_path %>
-      <li class="nav-item">
-      <%= link_to "Sign In", new_user_session_path, class:"text-decoration-none text-secondary mx-2" %>
-       </li>
-    <% end %>
-
 		</nav>
+		<%# Navbar ends %> 
+
 	<p class="notice"><%= notice %> </p>
 	<p class="alert"><%= alert %> </p>
 
