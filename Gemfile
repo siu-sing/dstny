@@ -55,3 +55,6 @@ end
 # gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "devise"
+
+# For processing images (e.g. avatars)
+gem "image_processing"
