@@ -14,15 +14,13 @@
     <%# = form_for %>
    <%# collection_radio_buttons(:option, :question_ids, Question.all, :id, :display_option) %>
     <% @question.options.each do |option| %>
-
-         <li> <%= option.option_text %></li>
-
+         <> <%= option.option_text %></>
     <% end %>
 
-    <div class="card">
-        <h3>Comments (<%= @question.comments.size %>)</h3>
-        <%= render partial: 'questions/comment', collection: @question.comments.reverse %>
-        <%= render partial: 'comments/form' %>
+    <% [options].each do |option| %>
+         <%= f.radio_button :option.option_text %>
+         <%= option_text %></>
+    <% end %>
 
-    </div>
+
 </div>
