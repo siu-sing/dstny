@@ -2,32 +2,36 @@ class OptionsController < ApplicationController
   before_action :new_option, only: [:new, :create]
   # before_action :set_option, only: [:show, :edit, :update]
   def index
+    @question = Question.find(params[:question_id])
+    @options = @question.options
   end
 
   def show
   end
 
   def new
-    @option = @question.options.build
+    # @option = @question.options.build
 
-    @option = Option.new
-    @question = Question.find(params[:question_id])
+    # @option = Option.new
+    # @question = Question.find(params[:question_id])
   end
 
   def create
-    @option = @question.options.build(option_params)
+    # @option = @question.options.build(option_params)
 
-    if @option.save 
-      redirect_to question_path(@question)
-    else
-      render :new
-    end
+    # if @option.save 
+    #   redirect_to question_path(@question)
+    # else
+    #   render :new
+    # end
   end
 
   def edit
   end
 
   def update
+
+
   end
 
   def destroy
@@ -40,6 +44,6 @@ class OptionsController < ApplicationController
   end
   
   def option_params
-    params.require(:option).permit(:option_text, :question_id)
+    params.require(:option).permit(:option_id, :question_id)
   end
 end

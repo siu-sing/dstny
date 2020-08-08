@@ -20,14 +20,27 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
+    @option = Option.find(params[:id])
+    # artist = Artist.find(params[:artist_id])
+    # End of rails way
+    if @option.update(option_params)
+      redirect_to artist_path(artist)
+    else
+      render :edit
+    end
+    
   end
 
   def show
     @comment = @question.comments
     @comment = Comment.new
+    @question = Question.find(params[:id])
+    @options = @question.options
+    
   end
 
   def destroy

@@ -21,10 +21,12 @@ Rails.application.routes.draw do
   # get 'questions/update'
   # get 'questions/show'
   # get 'questions/destroy'
+
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   
+
   resources :users
 
   resources :users do
@@ -39,9 +41,14 @@ Rails.application.routes.draw do
     resources :options
   end
 
+  # post '/questions/:id', to: 'questions#updateVote'
+
   resources :questions do
     resources :comments
   end
+
+  
+
 
   root 'questions#index'
 

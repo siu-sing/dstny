@@ -1,6 +1,5 @@
 <h1>Questions#show</h1>
 <p>Find me in app/views/questions/show.html.erb</p>
-<div class="container">
 
     <div class="card">
         <h5 class="card-header">User: <%= @question.user_id %></h5>
@@ -11,11 +10,19 @@
             </div>
     </div>
 
-    <%# = form_for %>
-    <%# collection_radio_buttons(:option, :question_ids, Question.all, :id, :display_option) %>
+
+<%#= form_with scope: :sitter, url: profile_path, local: true do |form| %>
+
+    <%= form_for @question do |f| %>
+    <%= f.collection_radio_buttons(:option_ids, @options, :id, :option_text) %>
+
+        <%= f.submit 'Vote' %>
+    <% end %>
+
+
 
    
-    <%# <% end %> %>
+    <%# <% end %> 
 
     <div class="card">
         <h3>Comments (<%= @question.comments.size %>)</h3>

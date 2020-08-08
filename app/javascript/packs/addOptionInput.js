@@ -1,39 +1,22 @@
-/*
-    Display new name and quantity on click of add more
-  */
- $("#addMore").on("click", function(e) {
-    e.preventDefault(); //kill default action
-    let numberIdOfRow = $(".listForm .row:last-child").attr("data-id");
-    let num = parseInt(numberIdOfRow) + 1;
+console.log('test')
 
-    let html = `<div class="row mb-3" data-id="${num}" >
-        <div class="col-10">
-          <label>Name: </label>
-          <input name="items[${num}][name]" class="form-control" />
-        </div>
-        <div class="col-1">
-          <label>Quantity: </label>
-          <input name="items[${num}][quantity]" class="form-control" type="number" />
-        </div>
-        <div class="col-1 stayEnd">
-          <button class="btn btn-danger del"> x</button>
-        </div>
-      </div>`;
-    $(".listForm").append(html);
-  });
+const addOptionInput = ()=> {
+  console.log('does it go here?')
+// $(document).ready(function () {
+  const createButton = document.getElementById("addBook");
+  createButton.addEventListener("click", () => {
 
-  /*
-  Remove name and quantity on click of remove
-  */
-  $(".listForm").on("click", ".del", function(e) {
-    e.preventDefault();
-    /*
-        Find the parent of the parent of the del button 
-        and completely remove it from the html
-    */
-    $(this)
-      .parent()
-      .parent()
-      .remove();
+    const lastId = document.querySelector("#fieldsetContainer").lastElementChild.id; //to_get the last created child id
+
+    const newId = parseInt(lastId, 10) + 1; //incremenet to get unique id  
+
+    //to get previous id-1 fieldset and replace with 2
+    const newFieldset = document.querySelector('[id="0"]').outerHTML.replace(/0/g,newId);
+
+    document.querySelector("#fieldsetContainer").insertAdjacentHTML(
+        "beforeend", newFieldset
+    );
   });
-});
+// });
+}
+export { addOptionInput }

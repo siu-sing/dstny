@@ -2,6 +2,10 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
+
+
+
+require("packs/addOptionInput")
 require('jquery')
 require('bootstrap')
 require("@rails/ujs").start()
@@ -16,3 +20,15 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+import { addOptionInput } from "packs/addOptionInput"
+
+document.addEventListener("turbolinks:load", ()=> {
+    
+    if (document.querySelector("#fieldsetContainer")) {
+        console.log('in app.js')
+        addOptionInput()
+      
+    }
+    console.log('outside app.js')
+  })

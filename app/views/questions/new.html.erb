@@ -3,7 +3,7 @@
 <div class="container">
 
 
-  <%= form_for @question do |q| %>
+  <%= simple_form_for @question do |q| %>
     <div class="form-row">
       <%= q.label :question_text, "Question" %>
       <%= q.text_field :question_text, class: "form-control" %>
@@ -21,26 +21,24 @@
 
     <h5> Options </h5>
 
-    <%= q.fields_for :options do |opt| %>
-    <div class="form-row">
-      <%= opt.label :option_text, "Option 1" %>
-      <%= opt.text_field :option_text, class: "form-control" %>
+<%#= q.simple_fields_for :options do |b| %>
+    <div id="fieldsetContainer">
+      <fieldset id="0">
+        <%#= b.text_field :option_text, class: "form-control" %>
+
+        <input class="form-control mb-2" type="text" name="question[options_attributes][0][option_text]" id="question_options_attributes_0_option_text">
+              
+      </fieldset>
+      <fieldset id="1">
+        
+         <input class="form-control mb-2" type="text" name="question[options_attributes][1][option_text]" id="question_options_attributes_1_option_text">
+
+      <%# <% end %>
+      </fieldset> 
+
     </div>
-    <div class="form-row"> 
-       <%= opt.label :option_text, "Option 2" %>
-        <%= opt.text_field :option_text, class: "form-control" %>
-    </div>
-    <% end %>
 
-
-
-    <div class="listForm">
-    
-    </div>
-    <button class="btn btn-info" id="addMore">Add Row</button>
-
-
-    <hr> 
+      <button type="button" id="addBook">Add more books</button>
 
     <%= q.submit "Submit", class: "btn btn-primary" %>
 
