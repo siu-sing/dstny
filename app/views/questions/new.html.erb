@@ -21,16 +21,23 @@
 
     <h5> Options </h5>
 
-
+    <%= q.fields_for :options do |opt| %>
     <div class="form-row">
-      <%#= q.label :option_text, "Option 1" %>
-      <%#= q.text_area :option_text, class: "form-control" %>
+      <%= opt.label :option_text, "Option 1" %>
+      <%= opt.text_field :option_text, class: "form-control" %>
     </div>
+    <div class="form-row"> 
+       <%= opt.label :option_text, "Option 2" %>
+        <%= opt.text_field :option_text, class: "form-control" %>
+    </div>
+    <% end %>
 
-    <div class="form-row">
-      <%#= q.label :option_text, "Option 2" %>
-      <%#= q.text_area :option_text, class: "form-control" %>
+
+
+    <div class="listForm">
+    
     </div>
+    <button class="btn btn-info" id="addMore">Add Row</button>
 
 
     <hr> 

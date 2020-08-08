@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   get 'comments/destroy'
   get 'comments/edit'
   get 'comments/show'
+  # get 'options/index'
+  # get 'options/show'
+  # get 'options/new'
+  # get 'options/create'
+  # get 'options/edit'
+  # get 'options/update'
+  # get 'options/destroy'
   # get 'questions/index'
   # get 'questions/new'
   # get 'questions/create'
@@ -26,6 +33,10 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :comments
+  end
+  
+  resources :questions do
+    resources :options
   end
 
   resources :questions do

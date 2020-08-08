@@ -12,12 +12,10 @@
     </div>
 
     <%# = form_for %>
-   <%# collection_radio_buttons(:option, :question_ids, Question.all, :id, :display_option) %>
-    <% @question.options.each do |option| %>
+    <%# collection_radio_buttons(:option, :question_ids, Question.all, :id, :display_option) %>
 
-         <li> <%= option.option_text %></li>
-
-    <% end %>
+   
+    <%# <% end %> %>
 
     <div class="card">
         <h3>Comments (<%= @question.comments.size %>)</h3>

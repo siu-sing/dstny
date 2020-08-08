@@ -3,6 +3,8 @@ class Question < ApplicationRecord
   has_many :options
   has_many :comments
 
+  accepts_nested_attributes_for :options
+
   #testing for option radio buttons in question/show
   # def display_option
   #   self.options.each do |option|
