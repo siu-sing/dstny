@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @comment = @question.comments
+    
     @comment = Comment.new
   end
 
