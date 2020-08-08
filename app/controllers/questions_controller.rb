@@ -10,8 +10,6 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-    @comment = @question.comments.new
-    @comment['user_id'] = current_user.id
   end
 
   def create
@@ -24,6 +22,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @comment = @question.comments
+    @comment = Comment.new
   end
 
   def destroy
@@ -39,4 +39,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
   end
 
+  def question_params
+    params.require(:question).permit(:user_id, :comment_text)
+  end
 end
