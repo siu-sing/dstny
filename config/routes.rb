@@ -1,21 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
- 
-  get 'comments/index'
-  get 'comments/create'
-  get 'comments/new'
-  get 'comments/update'
-  get 'comments/destroy'
-  get 'comments/edit'
-  get 'comments/show'
-  # get 'options/index'
-  # get 'options/show'
-  # get 'options/new'
-  # get 'options/create'
-  # get 'options/edit'
-  # get 'options/update'
-  # get 'options/destroy'
-=======
   get "comments/index"
   get "comments/create"
   get "comments/new"
@@ -23,7 +6,6 @@ Rails.application.routes.draw do
   get "comments/destroy"
   get "comments/edit"
   get "comments/show"
->>>>>>> 199e3a9... added active storage models
   # get 'questions/index'
   # get 'questions/new'
   # get 'questions/create'
@@ -32,16 +14,11 @@ Rails.application.routes.draw do
   # get 'questions/show'
   # get 'questions/destroy'
 
-  post 'options/addvote'
+  post "options/addvote"
 
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-<<<<<<< HEAD
-  
-
-=======
->>>>>>> 199e3a9... added active storage models
   resources :users
 
   resources :users do
@@ -51,7 +28,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :comments
   end
-  
+
   resources :questions do
     resources :options
   end
@@ -62,13 +39,5 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-<<<<<<< HEAD
-  
-
-
-  root 'questions#index'
-
-=======
   root "questions#index"
->>>>>>> 199e3a9... added active storage models
 end
