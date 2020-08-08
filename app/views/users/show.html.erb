@@ -1,9 +1,31 @@
-<h1> <%= @user.username %> Profile </h1> <br>
-<% if @user.avatar.attached? %>
-<%= image_tag @user.avatar, class: "rounded-circle", height: 50 %>
-<% else %>
-<%= image_tag "/default_avatar.png",  height: 50 %>
-<% end %>
-<strong>Username:</strong> <%= @user.username %> <br>
-<strong>Email:</strong> <%= @user.email %> <br>
-<strong>Profile Description:</strong> <%= @user.profile_description %> <br>
+<div class="container">
+
+    <h1> <%= @user.username %>'s Profile </h1> <br>
+    <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar, class: "rounded-circle", height: 50 %> <br>
+    <% else %>
+    <%= image_tag "/default_avatar.png",  height: 50 %> <br>
+    <% end %>
+
+    <div class="card">
+        Username: <%= @user.username %> <br>
+        Email: <%= @user.email %> <br>
+        Profile Description: <%= @user.profile_description %> <br>
+    </div>
+    <br>
+
+    <div class="card">
+        <h3><strong> <%= @user.username %>'s Questions </strong></h3> 
+    </div>
+    <br>
+    
+    <% current_user.questions.each do |ques| %>
+    <div class="card">
+        <h3 class="card-header"> <%= ques.description %> </h3>
+        <div class="card-body">
+            <p class="card-text"> <%= ques.question_text %> </p>
+        </div>
+    </div> <br>
+    <% end %>
+
+</div>
