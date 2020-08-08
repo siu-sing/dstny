@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   get 'user/index'
   get 'user/new'
   get 'user/create'
@@ -14,7 +13,6 @@ Rails.application.routes.draw do
 #   get 'user/update'
 #   get 'user/show'
 #   get 'user/destroy'
-=======
   get 'comments/index'
   get 'comments/create'
   get 'comments/new'
@@ -22,7 +20,6 @@ Rails.application.routes.draw do
   get 'comments/destroy'
   get 'comments/edit'
   get 'comments/show'
->>>>>>> added comments to question
   # get 'questions/index'
   # get 'questions/new'
   # get 'questions/create'
