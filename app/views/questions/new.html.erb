@@ -2,7 +2,6 @@
 <p>Find me in app/views/questions/new.html.erb</p>
 <div class="container">
 
-
   <%= simple_form_for @question do |q| %>
     <div class="form-row">
       <%= q.label :question_text, "Question" %>
@@ -26,23 +25,23 @@
       <fieldset id="0">
         <%#= b.text_field :option_text, class: "form-control" %>
 
-        <input class="form-control mb-2" type="text" name="question[options_attributes][0][option_text]" id="question_options_attributes_0_option_text">
+        <input class="form-control mb-2" type="text" name="question[options_attributes][0][option_text]" id="question_options_attributes_0_option_text" placeholder="yes">
               
       </fieldset>
       <fieldset id="1">
         
-         <input class="form-control mb-2" type="text" name="question[options_attributes][1][option_text]" id="question_options_attributes_1_option_text">
+         <input class="form-control mb-2" type="text" name="question[options_attributes][1][option_text]" id="question_options_attributes_1_option_text" placeholder="no">
 
-      <%# <% end %>
       </fieldset> 
 
     </div>
 
-      <button type="button" id="addBook">Add more books</button>
+      <button class="btn btn-sm btn-warning mb-2" type="button" id="addBook">Add Options</button>
 
-    <%= q.submit "Submit", class: "btn btn-primary" %>
+      <br>
+
+    <%= q.submit "Submit", class: "btn btn-primary btn-sm" %>
 
   <%end%>
-    <%# </div>
-    </div> %>
+
 </div>

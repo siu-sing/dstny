@@ -23,17 +23,7 @@ class QuestionsController < ApplicationController
 
   end
 
-  def update
-    @option = Option.find(params[:id])
-    # artist = Artist.find(params[:artist_id])
-    # End of rails way
-    if @option.update(option_params)
-      redirect_to artist_path(artist)
-    else
-      render :edit
-    end
-    
-  end
+  
 
   def show
     @comment = @question.comments
@@ -44,6 +34,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+
   end
 
   private
@@ -51,6 +42,8 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:question_text, :description, :expiry_date, options_attributes:[:option_text])
   end
+
+  
 
   def set_question
     @question = Question.find(params[:id])

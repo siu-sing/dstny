@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   # get 'questions/show'
   # get 'questions/destroy'
 
+  post 'options/addvote'
+
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

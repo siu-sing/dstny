@@ -34,6 +34,11 @@ class OptionsController < ApplicationController
 
   end
 
+  def addvote
+    puts "successfully voted"
+
+  end
+
   def destroy
   end
 
