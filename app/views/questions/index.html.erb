@@ -2,27 +2,33 @@
 <p>Find me in app/views/questions/index.html.erb</p>
 
 <div class="container">
-    
-    <div class="row row-cols-1 row-cols-md-2">
-        <% @questions.each do |ques| %>
-                
-        <div div class="col mb-6">
 
-                <%#= image_tag post.post_image, class:"card-img-top" %>
+	<div class="row row-cols-1 row-cols-md-2">
+		<% @questions.each do |ques| %>
 
-            <div class="card">
-            <h5 class="card-header">User: <%= ques.user_id %></h5>
-                <div class="card-body">
-                    <h5 class="card-title"><%= ques.question_text %></h5>
-                    <p class="card-text"><%= ques.expiry_date %></p>
-                    <%= link_to "Vote", question_path(ques.id), class: "btn btn-primary" %>
-                </div>
-            </div>
+		<div div class="col mb-6">
 
-        </div>
-    <% end %>
+			<%#= image_tag post.post_image, class:"card-img-top" %>
 
-    </div>
-        
+			<div class="card">
+				<h5 class="card-header">
+					<% if ques.user.avatar.attached? %>
+					<%= image_tag ques.user.avatar, class: "rounded-circle", height: 50 %>
+					<% else %>
+					<%= image_tag "/default_avatar.png",  height: 50 %>
+					<% end %>
+					<%= ques.user.username %> asks...
+				</h5>
+				<div class="card-body">
+					<h5 class="card-title"><%= ques.question_text %></h5>
+					<p class="card-text"><%= ques.expiry_date %></p>
+					<%= link_to "Vote", question_path(ques.id), class: "btn btn-primary" %>
+				</div>
+			</div>
+
+		</div>
+		<% end %>
+
+	</div>
+
 </div>
- 
