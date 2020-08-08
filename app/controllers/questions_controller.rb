@@ -10,36 +10,48 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @question.options.build
+    puts current_user
+    puts current_user.id
   end
 
   def create
+    @question = Question.new(question_params)
+    @question['user_id'] = current_user.id
+    @question.save
   end
 
   def edit
+
   end
 
-  def update
-  end
+  
 
   def show
     @comment = @question.comments
     @comment = Comment.new
+    @question = Question.find(params[:id])
+    @options = @question.options
+    
   end
 
   def destroy
+
   end
 
   private
 
-  # def question_params
-  #   params.require(:question).permit(:name, :hometown, :location, :year, :age)
-  # end
+  def question_params
+    params.require(:question).permit(:question_text, :description, :user_id, :comment_text, :expiry_date, options_attributes:[:option_text])
+  end
 
+  
   def set_question
     @question = Question.find(params[:id])
   end
 
-  def question_params
-    params.require(:question).permit(:user_id, :comment_text)
-  end
+  #INCORPORATED ABOVE INTO QUES_PARAMS
+  # def question_params
+  #   params.require(:question).permit(:user_id, :comment_text)
+  # end
 end
