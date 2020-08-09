@@ -5,4 +5,5 @@ class Question < ApplicationRecord
 
   accepts_nested_attributes_for :options
 
+  has_many_attached :question_images
 end

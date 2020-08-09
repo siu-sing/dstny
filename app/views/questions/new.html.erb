@@ -16,6 +16,10 @@
       <%= q.date_field :expiry_date, class: "form-control" %>
     </div>
 
+    <div class="form-row">
+        <%= q.label :question_images, "Images" %>
+        <%= q.file_field :question_images, multiple: true, direct_upload: true %>
+      </div>
     <hr>
 
     <h5> Options </h5>
