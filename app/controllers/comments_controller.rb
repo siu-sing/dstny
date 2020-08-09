@@ -43,6 +43,7 @@ class CommentsController < ApplicationController
   def edit
     @question = Question.find(params[:question_id])
     @comment = Comment.find(params[:id])
+   end
   end
 
   def show
