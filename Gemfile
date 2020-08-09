@@ -58,3 +58,6 @@ gem "devise"
 
 # For processing images (e.g. avatars)
 gem "image_processing"
+
+# For generating seed data
+gem "faker"

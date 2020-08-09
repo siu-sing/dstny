@@ -5,76 +5,57 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Faker::Config.random = Random.new(42)
 
-User.create! :username => "john", :email => "john@john.com", :password => "john1234", :password_confirmation => "john1234"
-User.create! :username => "jane", :email => "jane@jane.com", :password => "jane1234", :password_confirmation => "jane1234"
-User.create! :username => "mary", :email => "mary@mary.com", :password => "mary1234", :password_confirmation => "mary1234"
-User.create! :username => "jack", :email => "jack@jack.com", :password => "jack1234", :password_confirmation => "jack1234"
-User.create! :username => "anne", :email => "anne@anne.com", :password => "anne1234", :password_confirmation => "anne1234"
+# Generate 10 random users
+10.times do
+  username = Faker::Internet.unique.username(specifier: 5..8)
+  email = Faker::Internet.free_email(name: username)
+  password = "qwer1234"
+  profile_description = Faker::TvShows::TheITCrowd.quote
+  User.create! :username => username, :email => email, :password => password, :password_confirmation => password, :profile_description => profile_description
+end
 
-Question.create(
-  question_text: "Should I eat chicken rice or fish soup?",
-  description: "I usually like to eat chicken rice, but today's weather is so nice and cold. Maybe fish soup would be nice. But help me decide!",
-  expiry_date: Time.now + 10 * 60 * 60,
-  user_id: 1,
-)
+# Generate 10 random questions
+10.times do |idx|
+  option_1 = Faker::Verb.base
+  option_2 = Faker::Verb.base
+  question_text = "Should I " + option_1 + " or " + option_2 + "?"
+  description = Faker::TvShows::Friends.quote
+  expiry_date = Time.now + rand(6) * 60 * 60
+  user_id = 1 + rand(10)
 
-Question.create(
-  question_text: "Which dress should I wear for dinner this saturday?",
-  description: "I have 3 dresses. Blue, red and black. The dinner this saturday is for my friend's wedding and I am really looking forward to meeting new people. Which one should I wear?",
-  expiry_date: Time.now + 24 * 60 * 60 * 3,
-  user_id: 2,
-)
+  Question.create(
+    question_text: question_text,
+    description: description,
+    expiry_date: expiry_date,
+    user_id: user_id,
+  )
 
-Option.create(
-  option_text: "Chicken Rice",
-  votes: 0,
-  voters: [],
-  question_id: 1,
-)
+  Option.create(
+    option_text: option_1,
+    votes: 0,
+    voters: [],
+    question_id: idx + 1,
+  )
 
-Option.create(
-  option_text: "Fish Soup",
-  votes: 1,
-  voters: [2],
-  question_id: 1,
-)
+  Option.create(
+    option_text: option_2,
+    votes: 0,
+    voters: [],
+    question_id: idx + 1,
+  )
+end
 
-Option.create(
-  option_text: "Blue Dress",
-  votes: 1,
-  voters: [1],
-  question_id: 2,
-)
+#Generate random comments
+20.times do |idx|
+  comment_text = Faker::TvShows::Simpsons.quote
+  question_id = 1 + rand(10)
+  user_id = 1 + rand(10)
 
-Option.create(
-  option_text: "Red Dress",
-  votes: 0,
-  voters: [],
-  question_id: 2,
-)
-
-Option.create(
-  option_text: "Black Dress",
-  votes: 0,
-  voters: [],
-  question_id: 2,
-)
-
-Comment.create(
-  comment_text: "I think you should eat KFC.",
-  question_id: 1,
-  user_id: 3,
-)
-
-Comment.create(
-  comment_text: "I don't agree with mary, Arnold's is better.",
-  question_id: 1,
-  user_id: 4,
-)
-
-Comment.create(
-  comment_text: "Maybe you should wear a power suit.",
-  question_id: 2,
-  user_id: 5,
-)
+  Comment.create(
+    comment_text: comment_text,
+    question_id: question_id,
+    user_id: user_id,
+  )
+end
