@@ -25,17 +25,12 @@
 
 	<%= form_for @question do |f| %>
 	<%= f.collection_radio_buttons(:option_ids, @options, :id, :option_text) %>
-
+    
 	<%= f.submit 'Vote' %>
 	<% end %>
 
-
-	<%# <% end %>
-
 	<div class="card">
-		<h3>Comments (<%= @question.comments.size %>)</h3>
-		<%= render partial: 'questions/comment', collection: @question.comments.reverse %>
-		<%= render partial: 'comments/form' %>
-
+        <h3>Comments (<%= @question.comments.size %>)</h3>
+        <%= render partial: 'questions/comment'%>
+        <%= render partial: 'comments/form' %>
 	</div>
-</div>

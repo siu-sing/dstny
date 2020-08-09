@@ -1,5 +1,7 @@
 <div>
-    <h4>Comment by <%= comment.user_id%></h4>
+    <% @question.comments.each do |comment| %>
+    <h4>Comment by <%= comment.user.username%></h4>
     <p class="comment"><%= comment.comment_text %></p>
-    <p>Posted <%= distance_of_time_in_words(comment.question.created_at, comment.created_at) %>
+    <p>Posted <%= time_ago_in_words(comment.created_at) %> ago.</p>
+    <% end %>
 </div>

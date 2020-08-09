@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
   
 
   def show
-    @comment = @question.comments
+    
     @comment = Comment.new
     @question = Question.find(params[:id])
     @options = @question.options
