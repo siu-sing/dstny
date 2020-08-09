@@ -10,20 +10,11 @@ class OptionsController < ApplicationController
   end
 
   def new
-    # @option = @question.options.build
-
-    # @option = Option.new
-    # @question = Question.find(params[:question_id])
+ 
   end
 
   def create
-    # @option = @question.options.build(option_params)
 
-    # if @option.save 
-    #   redirect_to question_path(@question)
-    # else
-    #   render :new
-    # end
   end
 
   def edit

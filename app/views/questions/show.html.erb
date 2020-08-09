@@ -2,8 +2,12 @@
 <p>Find me in app/views/questions/show.html.erb</p>
 <div class="container">
 
+	<% if current_user %>
+    	<% if current_user.id == @question.user.id %>
+			<%= link_to 'Delete', question_path(@question), method: "delete", data: {title: 'Delete Poll', confirm: 'Are you sure?'} , class: "btn btn-danger mb-2" %>
+	    <% end %>
+    <% end %>
 
-	<%= link_to 'Delete', question_path(@question), method: "delete", data: {title: 'Delete Poll', confirm: 'Are you sure?'} , class: "btn btn-danger mb-2" %>
 
 	<div class="card">
 		<h5 class="card-header">
