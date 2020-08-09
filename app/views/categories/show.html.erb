@@ -1,2 +1,34 @@
 <h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+
+<h1><%= @category.cat_type %></h1>
+
+<div class="row d-flex flex-wrap">
+    <% @questions.reverse.each do |p| %>
+
+    <div class="border col-3 p-2 mx-1 text-center">
+
+        <%= link_to question_path(p) do %>
+        <% end %>
+
+        <div class="d-block">
+            <p>"<%= p.cat_type %>"</p>
+
+            <% p.Categories.each do |cat| %>
+            <%= link_to category.cat_type, category_path(cat) %>
+            <% end %>
+
+            <% category.cat_type.questions.each do |ques| %>
+            <div class="card">
+                <h3 class="card-header"> <%= ques.description %> </h3>
+                <div class="card-body">
+                    <p class="card-text"> <%= ques.question_text %> </p>
+                </div>
+            </div> <br>
+            <% end %>
+
+        </div>
+
+
+    </div>
+    <% end %>
+</div>

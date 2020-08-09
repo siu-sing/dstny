@@ -1,3 +1,4 @@
 class Category < ApplicationRecord
-  belongs_to :AddQuestionToCategories
+  has_many :questions 
+
 end

@@ -39,6 +39,14 @@
       </div>
     <hr>
 
+    <h5> Category </h5>
+    <%# <input  class="form-control mb-2" type="text" name="cat_type" 
+    placeholder="category">  %>
+
+    <%= q.fields_for :category, @question.build_category do |f| %>
+    <%= f.text_field :cat_type, class: "form-control" %>
+    <% end %>
+    
     <h5> Options </h5>
 
 <%#= q.simple_fields_for :options do |b| %>
@@ -60,14 +68,16 @@
             <div class="col-1"></div>
         </div>
 
-    </div>
+            <input class="form-control mb-2" type="text" name="question[options_attributes][1][option_text]"
+                id="question_options_attributes_1_option_text" placeholder="no">
 
       <button class="btn btn-sm btn-warning mb-2" id="addMore">Add Options</button>
 
-      <br>
+    </div>
 
+    <br>
+    
     <%= q.submit "Submit", class: "btn btn-primary btn-sm" %>
-
-  <% end %>
+    <% end %>
 
 </div>

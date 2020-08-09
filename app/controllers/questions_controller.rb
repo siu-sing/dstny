@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
 
   before_action :set_question, only: [:show, :edit, :destroy, :update]
@@ -11,6 +10,7 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
     @question.options.build
+    @question.build_category
     # puts current_user
     # puts current_user.id
   end
@@ -18,12 +18,22 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question["user_id"] = current_user.id
-    
+
     if @question.save
       redirect_to questions_path
     else
       render :new
     end
+    # @question.build_category.save
+
+    # if @category. params = avail
+    #   flash[:notice] = "category same, use same!"
+    #   redirect_to question_path(@question.id)
+    # else
+    #   flash[:alert] = "category not same, create new!"
+    #   redirect_to question_path(@question.id)
+    # end
+
   end
 
   def edit
@@ -36,6 +46,7 @@ class QuestionsController < ApplicationController
     if user_signed_in?
       @comment["user_id"] = current_user.id
     end
+    @category = @question.categories
   end
 
   def destroy
@@ -58,7 +69,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:question_text, :description, :user_id, :comment_text, :expiry_date, question_images: [], options_attributes: [:option_text])
+    params.require(:question).permit(:question_text, :description, :user_id, :comment_text, :expiry_date, options_attributes: [:option_text], question_images: [], category_attributes: [:id, :cat_type])
   end
 
   def set_question

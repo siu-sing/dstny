@@ -6,6 +6,16 @@ class CategoriesController < ApplicationController
   end
 
   def create
+    @question = Question.find(params[:question_id])
+    @category['question_id'] = @question.id
+    
+    if @category.save
+        flash[:notice] = "category created!"
+        redirect_to question_path(@question.id)
+      else 
+        flash[:alert] = "category NOT created!"
+        redirect_to question_path(@question.id)
+      end
   end
 
   def edit
@@ -15,6 +25,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @category = Category.find(params[:id])
+    @questions = @category.questions
   end
 
   def destroy
