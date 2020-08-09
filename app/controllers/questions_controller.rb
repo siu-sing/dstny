@@ -25,7 +25,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    
     @comment = Comment.new
     @question = Question.find(params[:id])
     @options = @question.options
@@ -37,6 +36,12 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     redirect_to questions_path
+  end
+
+  def flag
+    puts "@@@@@@@@@@@@@@@@@"
+    puts params[:question_id]
+    puts "@@@@@@@@@@@@@@@@@"
   end
 
   private
