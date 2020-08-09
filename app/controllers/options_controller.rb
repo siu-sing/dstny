@@ -10,32 +10,28 @@ class OptionsController < ApplicationController
   end
 
   def new
- 
   end
 
   def create
-
   end
 
   def edit
   end
 
   def update
-
-
   end
 
   def addvote
-    puts ' - -  - - - - - here '
+    puts " - -  - - - - - here "
     puts params[:option_id]
-    puts ' - -  - - - - - here '
+    puts " - -  - - - - - here "
     @option = Option.find(params[:option_id])
     @option.votes += 1
     @option.voters << current_user.id
-    @option.save
-    redirect_to question_path(@question)
 
-
+    if @option.save
+      redirect_to question_path(@option.question.id)
+    end
   end
 
   def destroy
@@ -46,7 +42,7 @@ class OptionsController < ApplicationController
   def new_option
     @question = Question.find(params[:question_id])
   end
-  
+
   def option_params
     params.require(:option).permit(:option_id, :vote, :question_id)
   end
