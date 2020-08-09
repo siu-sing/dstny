@@ -14,7 +14,6 @@
     <div class="note">
     <% end %>
 
-    <h4>Comment by <%= comment.user.username%></h4>
     <p class="comment"><%= comment.comment_text %></p>
 
     <% if comment.question.user_id == comment.user_id %>
@@ -28,18 +27,16 @@
     <% if user_signed_in?%>
 
         <% if comment.user_id == current_user.id %>
-            <div class="d-flex align-self-center ">
+            <span class="small">
             <%= link_to  "Edit", [comment.question, comment], method: :patch, class: "text-warning edit-button ml-2", :remote => true %>
             <span class="text-muted"> | </span>
             <%= link_to  "Delete", [comment.question, comment], method: "delete", class: "text-danger",data: { confirm: "Are you sure you want to delete this comment?"} %>
-            </div>
+            </span>
         <% end %>
  
     <hr>
     <% end %>
 
-
-    <p>Posted <%= time_ago_in_words(comment.created_at) %> ago.</p>
     <% end %>
 </div>
 <%= javascript_pack_tag 'comments' %>
