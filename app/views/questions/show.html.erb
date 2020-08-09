@@ -18,8 +18,24 @@
 			<h5 class="card-title"><%= @question.question_text %></h5>
 			<p class="card-text"><%= @question.description %></p>
 			<p class="card-text"><%= @question.expiry_date %></p>
+
+
+			<div class="container">
+				<div class="row">
+					<% if @question.question_images.attached? %>
+					<% @question.question_images.each do |img| %>
+					<div class="col text-center">
+                        <div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
+                        <div><%= img.filename %></div>
+					</div>
+					<% end %>
+					<% end %>
+				</div>
+			</div>
 		</div>
 	</div>
+
+
 
 	<%#= form_with scope: :sitter, url: profile_path, local: true do |form| %>
 
@@ -29,6 +45,13 @@
 	<%= f.submit 'Vote' %>
 	<% end %>
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 4388a15... added image attachment to questions, multiple images
 	<div class="card">
         <h3>Comments (<%= @question.comments.size %>)</h3>
         <%= render partial: 'questions/comment'%>
