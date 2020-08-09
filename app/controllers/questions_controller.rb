@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
     @comment = Comment.new
     @question = Question.find(params[:id])
     @options = @question.options
-    @current_user = current_user.id
+    @comment["user_id"] = current_user.id
   end
 
   def destroy
