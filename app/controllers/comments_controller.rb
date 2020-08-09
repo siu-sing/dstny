@@ -21,6 +21,17 @@ class CommentsController < ApplicationController
   end
 
   def update
+    @question = Question.find(params[:question_id])
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      format.js
+    if @comment.update(comment_params)
+        flash[:notice] = "Comment Edited!"
+        redirect_to question_path(@question.id)
+    else 
+        flash[:alert] = "Comment Not Edited!"
+        redirect_to question_path(@question.id)
+    end
   end
 
   def destroy
@@ -32,6 +43,7 @@ class CommentsController < ApplicationController
   def edit
     @question = Question.find(params[:question_id])
     @comment = Comment.find(params[:id])
+   end
   end
 
   def show
