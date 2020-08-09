@@ -5,17 +5,16 @@ class CommentsController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @comment = Comment.new(comment_params)
-    @comment['question_id'] = @question.id
-    @comment['user_id'] = current_user.id 
-    
+    @comment["question_id"] = @question.id
+    @comment["user_id"] = current_user.id
+
     if @comment.save
       flash[:notice] = "Comment Created!"
       redirect_to question_path(@question.id)
-    else 
+    else
       flash[:alert] = "Comment Not Created!"
       redirect_to question_path(@question.id)
     end
-    
   end
 
   def new
@@ -40,6 +39,5 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:user_id, :comment_text, :post_id)
-    end
-    
+  end
 end
