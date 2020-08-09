@@ -38,10 +38,10 @@
 	</div>
 
 	<hr>
-
+    <% votersArr = [] %>
 	<% if current_user %>
 
-	    <% votersArr = [] %>
+	    
 	    <% @options.each do |o| %>
 	        <% votersArr = votersArr + o.voters %>
 	    <% end %>
