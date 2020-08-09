@@ -29,7 +29,9 @@ class QuestionsController < ApplicationController
     @comment = Comment.new
     @question = Question.find(params[:id])
     @options = @question.options
-    @comment["user_id"] = current_user.id
+    if user_signed_in?
+      @comment["user_id"] = current_user.id
+    end
   end
 
   def destroy
