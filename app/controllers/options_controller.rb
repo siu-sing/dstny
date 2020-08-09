@@ -10,20 +10,11 @@ class OptionsController < ApplicationController
   end
 
   def new
-    # @option = @question.options.build
-
-    # @option = Option.new
-    # @question = Question.find(params[:question_id])
+ 
   end
 
   def create
-    # @option = @question.options.build(option_params)
 
-    # if @option.save 
-    #   redirect_to question_path(@question)
-    # else
-    #   render :new
-    # end
   end
 
   def edit
@@ -35,7 +26,15 @@ class OptionsController < ApplicationController
   end
 
   def addvote
-    puts "successfully voted"
+    puts ' - -  - - - - - here '
+    puts params[:option_id]
+    puts ' - -  - - - - - here '
+    @option = Option.find(params[:option_id])
+    @option.votes += 1
+    @option.voters << current_user.id
+    @option.save
+    redirect_to question_path(@question)
+
 
   end
 
@@ -49,6 +48,6 @@ class OptionsController < ApplicationController
   end
   
   def option_params
-    params.require(:option).permit(:option_id, :question_id)
+    params.require(:option).permit(:option_id, :vote, :question_id)
   end
 end

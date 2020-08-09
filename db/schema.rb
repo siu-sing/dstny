@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_092240) do
+ActiveRecord::Schema.define(version: 2020_08_09_034811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_08_08_092240) do
 
   create_table "options", force: :cascade do |t|
     t.text "option_text"
-    t.integer "votes"
+    t.integer "votes", default: 0
     t.integer "voters", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

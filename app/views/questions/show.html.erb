@@ -2,8 +2,12 @@
 <p>Find me in app/views/questions/show.html.erb</p>
 <div class="container">
 
+	<% if current_user %>
+    	<% if current_user.id == @question.user.id %>
+			<%= link_to 'Delete', question_path(@question), method: "delete", data: {title: 'Delete Poll', confirm: 'Are you sure?'} , class: "btn btn-danger mb-2" %>
+	    <% end %>
+    <% end %>
 
-	<%= link_to 'Delete', question_path(@question), method: "delete", data: {title: 'Delete Poll', confirm: 'Are you sure?'} , class: "btn btn-danger mb-2" %>
 
 	<div class="card">
 		<h5 class="card-header">
@@ -17,10 +21,8 @@
 		<div class="card-body">
 			<h5 class="card-title"><%= @question.question_text %></h5>
 			<p class="card-text"><%= @question.description %></p>
-			<p class="card-text"><%= @question.expiry_date %></p>
-
-
-			<div class="container">
+            <p class="card-text"><%= @question.expiry_date %></p>
+            <div class="container">
 				<div class="row">
 					<% if @question.question_images.attached? %>
 					<% @question.question_images.each do |img| %>
@@ -35,18 +37,39 @@
 		</div>
 	</div>
 
+<hr>
+	<%# if o.question_id && o.voters.include? current_user.id %>
+		<%# if o.voters.include? current_user.id %>
+<% if current_user %>
+    <% userVotedArr = [] %>
+    <% votersArr = [] %>
+    <% @options.each do |o| %>
+        <% votersArr = votersArr + o.voters %>
+    <% end %>
+    <% if votersArr.include? current_user.id %>
+        <p> Thanks for voting! </p>
+    <% else %>
+    <div class="form-check">
+        <%= form_with url: "/options/addvote" do |f|%>
+            <%= f.collection_radio_buttons(:option_id, @options, :id, :option_text) %>
+            <br>
+            <%= f.submit "Vote", class:"btn btn-outline-success btn-sm"%>
+        <% end %>
+    </div>
+    <% end %>
+			<%# userVotedArr << o.question_id %>
+			<%# if userVotedArr.include? o.question_id %> 
+<% else %>
+	<p> Log in to vote </p>
+<% end %>
 
 
-	<%#= form_with scope: :sitter, url: profile_path, local: true do |form| %>
-
-	<%= form_for @question do |f| %>
-	<%= f.collection_radio_buttons(:option_ids, @options, :id, :option_text) %>
-    
-	<%= f.submit 'Vote' %>
-	<% end %>
+<hr>
 
 	<div class="card">
-        <h3>Comments (<%= @question.comments.size %>)</h3>
-        <%= render partial: 'questions/comment'%>
-        <%= render partial: 'comments/form' %>
+		<h3>Comments (<%= @question.comments.size %>)</h3>
+		<%= render partial: 'questions/comment', collection: @question.comments.reverse %>
+		<%= render partial: 'comments/form' %>
+
 	</div>
+</div>
