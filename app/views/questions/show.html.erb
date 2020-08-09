@@ -26,19 +26,11 @@
 				<div class="row">
 					<% if @question.question_images.attached? %>
 					<% @question.question_images.each do |img| %>
-<<<<<<< HEAD
-					<div class="col text-center">
-						<div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
-						<div><%= img.filename %></div>
-					</div>
-					<% end %>
-=======
                         <div class="col text-center">
                             <div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
                             <div><%= img.filename %></div>
                         </div>
                         <% end %>
->>>>>>> f09d1aa... added a tag to flag question as inappropriate
 					<% end %>
 				</div>
             </div>
