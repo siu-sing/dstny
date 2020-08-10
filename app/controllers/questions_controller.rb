@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
 
-  # before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
 
   before_action :set_question, only: [:show, :edit, :destroy, :update]
 
@@ -11,14 +11,19 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
     @question.options.build
-    puts current_user
-    puts current_user.id
+    # puts current_user
+    # puts current_user.id
   end
 
   def create
     @question = Question.new(question_params)
     @question["user_id"] = current_user.id
-    @question.save
+    
+    if @question.save
+      redirect_to questions_path
+    else
+      render :new
+    end
   end
 
   def edit
