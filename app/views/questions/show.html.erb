@@ -19,9 +19,10 @@
 			<%= @question.user.username %> asks...
 		</h5>
 		<div class="card-body">
-			<h5 class="card-title"><%= @question.question_text %></h5>
+			<h5 class="card-title"><%= @question.question_text %> </h5>
 			<p class="card-text"><%= @question.description %></p>
 			<p class="card-text"><%= @question.expiry_date %></p>
+<<<<<<< HEAD
 			<div class="container">
 				<div class="row">
 					<% if @question.question_images.attached? %>
@@ -39,9 +40,12 @@
             <%= link_to "Flag as Inappropriate", questions_flag_path(question_id: @question.id), method: "post" %>
         </div>
             <% end %>
+=======
+			<p class="card-text"><%= @questions.categories.cat_type %></p>
+>>>>>>> pause question category works, test flag question
 		</div>
-	</div>
 
+<<<<<<< HEAD
 <hr>
 
 <% votersArr = [] %>
@@ -62,6 +66,8 @@
                 <label class="form-check-label" style="margin-top:0.25rem;"><%= b.label %></label>
             </div>
             <% end %>
+=======
+>>>>>>> pause question category works, test flag question
 
             <%= f.submit "Vote!", class:"btn btn-success btn-sm"%>
         <% end %>
@@ -87,6 +93,10 @@
         </div>
         <hr>
 	<% end %>
+	</div>
+
+	<%#= form_with scope: :sitter, url: profile_path, local: true do |form| %>
+
 
 	<div class="card">
 		<h3>Comments (<%= @question.comments.size %>)</h3>

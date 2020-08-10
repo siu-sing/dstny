@@ -8,7 +8,7 @@ require("packs/addOptionInput")
 require('jquery')
 require('bootstrap')
 require("@rails/ujs").start()
-require('data-confirm-modal')
+require('data-confirm-modal')  // DANGER DANGER HAHAHAHA
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")

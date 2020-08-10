@@ -43,6 +43,7 @@ class QuestionsController < ApplicationController
     @comment = Comment.new
     @question = Question.find(params[:id])
     @options = @question.options
+
     if user_signed_in?
       @comment["user_id"] = current_user.id
     end
