@@ -1,6 +1,6 @@
 <h1>Questions#new</h1>
 <p>Find me in app/views/questions/new.html.erb</p>
-<div class="container">
+<div class="container mb-5">
 
 <% if @question.errors.any? %>
     <%= pluralize(@question.errors.count, "error") %>
@@ -20,9 +20,16 @@
       <%= q.text_area :description, class: "form-control", placeholder: "(Optional)" %>
     </div>
     <br>
+
+      <div class="badge badge-warning"> Current Time: <%= Time.now.strftime("%d %b %Y, %I:%M%p") %></div>
+    <br>
+      <div class="badge badge-warning mb-2">Poll must be opened at least  1 hour from current time</div>
+
     <div class="form-row">
       <%= q.label :expiry_date, "Expiry Date" %>
-      <%= q.datetime_local_field :expiry_date, min: Time.now.strftime("%d-%m-%YT%H:%M") %>
+      
+      <%= q.datetime_local_field :expiry_date, min: (Time.now + 1*60*60).strftime("%d-%m-%YT%H:%M"), value:"#{(Time.now + 1*60*60).strftime("%Y-%m-%dT%H:%M")}" %>
+      <%#= q.datetime_local_field :expiry_date, min: Time.now.strftime("%d-%m-%YT%H:%M") %>
 
     </div>
     <br>

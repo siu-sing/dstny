@@ -10,7 +10,7 @@
 
 			<%#= image_tag post.post_image, class:"card-img-top" %>
 
-			<div class="card">
+			<div class="card mb-2">
 				<h5 class="card-header">
 					<% if ques.user.avatar.attached? %>
 					<%= image_tag ques.user.avatar, class: "rounded-circle", height: 50 %>
@@ -20,10 +20,16 @@
 					<%= ques.user.username %> asks...
 				</h5>
 				<div class="card-body">
-					<h5 class="card-title"><%= ques.question_text %></h5>
-					<p class="card-text"><%= ques.expiry_date %></p>
-					<%= link_to "Vote", question_path(ques.id), class: "btn btn-primary" %>
+					<h6 class="card-title"><%= ques.question_text %></h6>
+					<small class="card-text">Expires: <%= ques.expiry_date.strftime('%d %b %Y, %I:%M%p') %></small>
+					<br>
+					<%= link_to "Vote", question_path(ques.id), class: "btn btn-outline-success btn-sm mt-2" %>
+					 
 				</div>
+				 <div class="card-footer text-muted text-right">
+    					<small> Posted: <%= (ques.created_at + 8.hours).strftime('%d %b %Y, %I:%M%p') %></small>
+  					</div>
+					
 			</div>
 
 		</div>
