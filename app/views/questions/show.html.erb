@@ -26,14 +26,19 @@
 				<div class="row">
 					<% if @question.question_images.attached? %>
 					<% @question.question_images.each do |img| %>
-					<div class="col text-center">
-						<div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
-						<div><%= img.filename %></div>
-					</div>
-					<% end %>
+                        <div class="col text-center">
+                            <div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
+                            <div><%= img.filename %></div>
+                        </div>
+                        <% end %>
 					<% end %>
 				</div>
-			</div>
+            </div>
+            <% if user_signed_in? %>
+            <div class="small text-right">
+            <%= link_to "Flag as Inappropriate", questions_flag_path(question_id: @question.id), method: "post" %>
+        </div>
+            <% end %>
 		</div>
 	</div>
 

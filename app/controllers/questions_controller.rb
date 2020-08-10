@@ -25,7 +25,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    
     @comment = Comment.new
     @question = Question.find(params[:id])
     @options = @question.options
@@ -37,6 +36,18 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     redirect_to questions_path
+  end
+
+  def flag
+    puts "@@@@@@@@@@@@@@@@@"
+    puts params[:question_id]
+    puts "@@@@@@@@@@@@@@@@@"
+
+    @question = Question.find(params[:question_id])
+    # puts @question
+    UserMailer.flag_question_email(@question, current_user).deliver_now
+    flash[:notice] = "Thank you for reporting. Admin has been informed"
+    redirect_to question_path(@question.id)
   end
 
   private

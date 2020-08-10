@@ -1,0 +1,13 @@
+
+<h1>User on DSTNY flagged question as inappropriate.</h1>
+<b>Question Content</b> <br>
+<i><%= @question.question_text %></i> <br>
+<b>Question Description</b> <br>
+<i><%= @question.description %></i> <br>
+<ul>Options
+    <% @question.options.each do |o| %>
+<li><%= o.option_text %></li>
+    <% end %>
+</ul>
+<b>OP:</b> <%= @question.user.username %>, <%= @question.user.email %> <br>
+<b>Reported by:</b> <%= @user.username %>, <%= @user.email %>
