@@ -1,4 +1,5 @@
 <h1>Questions#show</h1>
+<p>Find me in app/views/questions/show.html.erb</p>
 <div class="container">
 
 	<% if current_user %>
@@ -7,7 +8,6 @@
 	    <% end %>
 	<% end %>
 
-<<<<<<< HEAD
 
 	<div class="card">
 		<h5 class="card-header">
@@ -22,7 +22,7 @@
 			<h5 class="card-title"><%= @question.question_text %> </h5>
 			<p class="card-text"><%= @question.description %></p>
 			<p class="card-text"><%= @question.expiry_date %></p>
-<<<<<<< HEAD
+
 			<div class="container">
 				<div class="row">
 					<% if @question.question_images.attached? %>
@@ -40,12 +40,9 @@
             <%= link_to "Flag as Inappropriate", questions_flag_path(question_id: @question.id), method: "post" %>
         </div>
             <% end %>
-=======
-			<p class="card-text"><%= @questions.categories.cat_type %></p>
->>>>>>> pause question category works, test flag question
+			<p class="card-text"><%= @category.cat_type %></p>
 		</div>
 
-<<<<<<< HEAD
 <hr>
 
 <% votersArr = [] %>
@@ -106,41 +103,3 @@
 
 	</div>
 </div>
-=======
-    <%= link_to 'Delete', question_path(@question), method: "delete", data: {title: 'Delete Poll', confirm: 'Are you sure?'} , class: "btn btn-danger mb-2" %>
-
-    <div class="card">
-        <h3 class="card-header">
-            <% if @question.user.avatar.attached? %>
-            <%= image_tag @question.user.avatar, class: "rounded-circle", height: 50 %>
-            <% else %>
-            <%= image_tag "/default_avatar.png",  height: 50 %>
-            <% end %>
-            <%= @question.user.username %> asks...
-        </h3>
-        <div class="card-body">
-            <h5 class="card-title"><%= @question.question_text %> </h5>
-            <p class="card-text"><%= @question.description %></p>
-            <p class="card-text">Poll Expires: <%= @question.expiry_date %></p>
-            <p class="card-text">Category: #<%= @question.category.cat_type %></p>
-            
-            
-        <%= form_for @question do |f| %>
-        <%= f.collection_radio_buttons(:option_ids, @options, :id, :option_text) %>
-
-        <%= f.submit 'Vote' %>
-        <% end %>
-    </div>
-        <%#= form_with scope: :sitter, url: profile_path, local: true do |form| %>
-
-        <div class="card-header">
-            <h3>Comments (<%= @question.comments.size %>)</h3>
-        </div>
-
-        <div class="card-body">
-            <%= render partial: 'questions/comment'%>
-            <%= render partial: 'comments/form' %>
-        </div>
-    </div>
-</div>
->>>>>>> question category

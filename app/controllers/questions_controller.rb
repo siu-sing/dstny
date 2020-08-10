@@ -47,7 +47,7 @@ class QuestionsController < ApplicationController
     if user_signed_in?
       @comment["user_id"] = current_user.id
     end
-    @category = @question.categories
+    @category = @question.category
   end
 
   def destroy
