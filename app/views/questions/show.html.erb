@@ -37,30 +37,36 @@
 		</div>
 	</div>
 
-	<hr>
-    <% votersArr = [] %>
-	<% if current_user %>
+<hr>
 
-	    
-	    <% @options.each do |o| %>
-	        <% votersArr = votersArr + o.voters %>
-	    <% end %>
-        
-        <% if votersArr.include? current_user.id %>
-	        <p> Thanks for voting! </p>
-	    <% else %>
+<% votersArr = [] %>
+<% if current_user %>
+    
+    <% @options.each do |o| %>
+        <% votersArr = votersArr + o.voters %>
+    <% end %>
+    <% if votersArr.include? current_user.id %>
+        <p> Thanks for voting! </p>
+    <% else %>
+
+	        <%= form_with url: "/options/addvote" do |f|%>
+            <%= f.collection_radio_buttons(:option_id, @options, :id, :option_text) do |b| %>
+
             <div class="form-check">
-                <%= form_with url: "/options/addvote" do |f|%>
-                <%= f.collection_radio_buttons(:option_id, @options, :id, :option_text) %>
-                <br>
-                <%= f.submit "Vote", class:"btn btn-outline-success btn-sm"%>
-                <% end %>
+                <div class="form-check-input"><%= b.radio_button %></div>
+                <label class="form-check-label" style="margin-top:0.25rem;"><%= b.label %></label>
             </div>
-	    <% end %>
+            <% end %>
 
-	<% else %>
-	    <p> Log in to vote </p>
-	<% end %>
+            <%= f.submit "Vote!", class:"btn btn-success btn-sm"%>
+        <% end %>
+    
+	
+    <% end %>
+
+<% else %>
+	<p> Log in to vote </p>
+<% end %>
 
 	<hr>
 
