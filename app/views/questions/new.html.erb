@@ -27,14 +27,17 @@
 
     <div class="form-row">
       <%= q.label :expiry_date, "Expiry Date" %>
-      
+      </div>
+      <div class="form-row">
       <%= q.datetime_local_field :expiry_date, min: (Time.now + 1*60*60).strftime("%d-%m-%YT%H:%M"), value:"#{(Time.now + 1*60*60).strftime("%Y-%m-%dT%H:%M")}" %>
       <%#= q.datetime_local_field :expiry_date, min: Time.now.strftime("%d-%m-%YT%H:%M") %>
 
     </div>
     <br>
     <div class="form-row">
-        <%= q.label :question_images, "Images" %>
+        <%= q.label :question_images, "Upload Images" %>
+    </div>
+    <div class="form-row">
         <%= q.file_field :question_images, multiple: true, direct_upload: true, class: "btn btn-dark btn-sm" %>
       </div>
     <hr>
@@ -70,11 +73,9 @@
 
       <button class="btn btn-sm btn-warning mb-2" id="addMore">Add Options</button>
 
-    </div>
+<br>
 
-    <br>
-    
-    <%= q.submit "Submit", class: "btn btn-primary btn-sm" %>
+    <%= q.submit "Submit", class: "btn btn-success btn-sm px-4" %>
+    <%= link_to  "Cancel", questions_path, class:"btn btn-danger btn-sm px-4" %>
     <% end %>
-
 </div>

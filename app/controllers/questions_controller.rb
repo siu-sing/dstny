@@ -55,9 +55,6 @@ class QuestionsController < ApplicationController
   # randall - probably not needed 1pm tues
   # @question.build_category.save
 
-  def edit
-  end
-
   def show
     @comment = Comment.new
     @question = Question.find(params[:id])
@@ -67,6 +64,28 @@ class QuestionsController < ApplicationController
       @comment["user_id"] = current_user.id
     end
     @category = @question.category
+  end
+
+  def edit
+  end
+
+  def update
+    if @question.update(question_params)
+      redirect_to question_path(@question.id)
+    else
+      render :edit
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @question.update(question_params)
+      redirect_to question_path(@question.id)
+    else
+      render :edit
+    end
   end
 
   def destroy

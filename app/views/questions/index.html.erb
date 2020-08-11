@@ -11,19 +11,26 @@
 			<%#= image_tag post.post_image, class:"card-img-top" %>
 
 			<div class="card mb-2">
-				<h5 class="card-header">
-					<% if ques.user.avatar.attached? %>
-					<%= image_tag ques.user.avatar, class: "rounded-circle", height: 50 %>
-					<% else %>
-					<%= image_tag "/default_avatar.png",  height: 50 %>
-					<% end %>
-					<%= ques.user.username %> asks...
-				</h5>
+				<div class="card-header">
+					<div class="row">
+						<div class="col-md-6 text-left">
+							<h5>
+							<% if ques.user.avatar.attached? %>
+							<%= image_tag ques.user.avatar, class: "rounded-circle", height: 50 %>
+							<% else %>
+							<%= image_tag "/default_avatar.png",  height: 50 %>
+							<% end %>
+							<%= ques.user.username %> asks...
+							</h5>
+						</div>
+						<div class="col-md-6 text-right">
+							<%= link_to "Vote", question_path(ques.id), class: "btn btn-outline-info btn-sm px-4" %>
+						</div>
+					</div>
+				</div>
 				<div class="card-body">
 					<h6 class="card-title"><%= ques.question_text %></h6>
 					<small class="card-text">Expires: <%= ques.expiry_date.strftime('%d %b %Y, %I:%M%p') %></small>
-					<br>
-					<%= link_to "Vote", question_path(ques.id), class: "btn btn-outline-success btn-sm mt-2" %>
 					 
 				</div>
 				 <div class="card-footer text-muted text-right">
