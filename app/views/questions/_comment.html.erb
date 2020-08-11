@@ -3,7 +3,7 @@
 
     <p>
         <% if comment.user.avatar.attached? %>
-					<%= image_tag ques.user.avatar, class: "rounded-circle", height: 25 %>
+					<%= image_tag comment.user.avatar, class: "rounded-circle", height: 25 %>
 					<% else %>
 					<%= image_tag "/default_avatar.png",  height: 25 %>
 		<% end %>
