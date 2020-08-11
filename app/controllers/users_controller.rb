@@ -29,6 +29,11 @@ class UsersController < ApplicationController
         end
       end
     end
+
+    #to get polls voted by user
+    #search through the options table, each time the user id is found, get the question
+    #send the list of question to view to render
+
   end
 
   def destroy
