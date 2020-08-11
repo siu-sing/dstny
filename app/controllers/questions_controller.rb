@@ -39,7 +39,6 @@ class QuestionsController < ApplicationController
 
 
   def show
-
     @comment = Comment.new()
     # @comment.images.attach(params[:comment][:comment_images])
     @question = Question.find(params[:id])
