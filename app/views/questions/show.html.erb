@@ -96,8 +96,9 @@
     <% end %>
 
 <% else %>
-	
+	<small>
 	<%= link_to "Sign in", new_user_session_path %> to vote!
+	</small>
 	
 <% end %>
 </div>
@@ -134,7 +135,11 @@
 
 		<%= render partial: 'questions/comment'%>
 		<% if user_signed_in? %>
-		<%= render partial: 'comments/form' %>
+			<%= render partial: 'comments/form' %>
+
+		<% else %>
+	
+			<small><%= link_to "Sign in", new_user_session_path %> to comment!</small>
 		<% end %>
 	</div>
 	</div>
