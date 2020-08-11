@@ -36,6 +36,12 @@ ActiveRecord::Schema.define(version: 2020_08_09_034811) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "cat_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "comment_text"
     t.datetime "created_at", precision: 6, null: false
@@ -63,6 +69,8 @@ ActiveRecord::Schema.define(version: 2020_08_09_034811) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.datetime "expiry_date"
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_questions_on_category_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -84,5 +92,6 @@ ActiveRecord::Schema.define(version: 2020_08_09_034811) do
   add_foreign_key "comments", "questions"
   add_foreign_key "comments", "users"
   add_foreign_key "options", "questions"
+  add_foreign_key "questions", "categories"
   add_foreign_key "questions", "users"
 end

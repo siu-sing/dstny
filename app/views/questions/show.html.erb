@@ -3,9 +3,9 @@
 <div class="container">
 
 	<% if current_user %>
-        <% if current_user.id == @question.user.id %>
-            <%= link_to 'Delete', question_path(@question), method: "delete", data: {title: 'Delete Poll', confirm: 'Are you sure?'} , class: "btn btn-danger mb-2" %>
-	    <% end %>
+	<% if current_user.id == @question.user.id %>
+	<%= link_to 'Delete', question_path(@question), method: "delete", data: {title: 'Delete Poll', confirm: 'Are you sure?'} , class: "btn btn-danger mb-2" %>
+	<% end %>
 	<% end %>
 
 
@@ -19,74 +19,84 @@
 			<%= @question.user.username %> asks...
 		</h5>
 		<div class="card-body">
-			<h5 class="card-title"><%= @question.question_text %></h5>
+			<h5 class="card-title"><%= @question.question_text %> </h5>
 			<p class="card-text"><%= @question.description %></p>
 			<p class="card-text"><%= @question.expiry_date %></p>
+
 			<div class="container">
 				<div class="row">
 					<% if @question.question_images.attached? %>
 					<% @question.question_images.each do |img| %>
-                        <div class="col text-center">
-                            <div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
-                            <div><%= img.filename %></div>
-                        </div>
-                        <% end %>
+					<div class="col text-center">
+						<div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
+						<div><%= img.filename %></div>
+					</div>
+					<% end %>
 					<% end %>
 				</div>
-            </div>
-            <% if user_signed_in? %>
-            <div class="small text-right">
-            <%= link_to "Flag as Inappropriate", questions_flag_path(question_id: @question.id), method: "post" %>
-        </div>
-            <% end %>
+			</div>
+			<% if user_signed_in? %>
+			<div class="small text-right">
+				<%= link_to "Flag as Inappropriate", questions_flag_path(question_id: @question.id), method: "post" %>
+			</div>
+			<% end %>
+
+			<% if @category.cat_type != "" %>
+			<p class="card-text">Category: #
+				<%= link_to @category.cat_type, category_path(@category.id) %>
+			</p>
+			<% end %>
 		</div>
+
+		<hr>
+
+		<% votersArr = [] %>
+		<% if current_user %>
+
+		<% @options.each do |o| %>
+		<% votersArr = votersArr + o.voters %>
+		<% end %>
+		<% if votersArr.include? current_user.id %>
+		<p> Thanks for voting! </p>
+		<% else %>
+
+		<%= form_with url: "/options/addvote" do |f|%>
+		<%= f.collection_radio_buttons(:option_id, @options, :id, :option_text) do |b| %>
+
+		<div class="form-check">
+			<div class="form-check-input"><%= b.radio_button %></div>
+			<label class="form-check-label" style="margin-top:0.25rem;"><%= b.label %></label>
+		</div>
+		<% end %>
+
+		<%= f.submit "Vote!", class:"btn btn-success btn-sm"%>
+		<% end %>
+
+
+		<% end %>
+
+		<% else %>
+		<p> Log in to vote </p>
+		<% end %>
+
+		<hr>
+
+		<% if votersArr.any? %>
+		<% @options.each do |o| %>
+		<div class="my-3">
+			<%= o.option_text %>
+			<% bar_len = ((o.votes.to_f / votersArr.length.to_f) * 100).round %>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width:<%= bar_len %>%"><%= o.votes %></div>
+			</div>
+			<% end %>
+		</div>
+		<hr>
+		<% end %>
 	</div>
 
-<hr>
+	<%#= form_with scope: :sitter, url: profile_path, local: true do |form| %>
 
-<% votersArr = [] %>
-<% if current_user %>
-    
-    <% @options.each do |o| %>
-        <% votersArr = votersArr + o.voters %>
-    <% end %>
-    <% if votersArr.include? current_user.id %>
-        <p> Thanks for voting! </p>
-    <% else %>
-
-	        <%= form_with url: "/options/addvote" do |f|%>
-            <%= f.collection_radio_buttons(:option_id, @options, :id, :option_text) do |b| %>
-
-            <div class="form-check">
-                <div class="form-check-input"><%= b.radio_button %></div>
-                <label class="form-check-label" style="margin-top:0.25rem;"><%= b.label %></label>
-            </div>
-            <% end %>
-
-            <%= f.submit "Vote!", class:"btn btn-success btn-sm"%>
-        <% end %>
-    
-	
-    <% end %>
-
-<% else %>
-	<p> Log in to vote </p>
-<% end %>
-
-	<hr>
-
-	<% if votersArr.any? %>
-	    <% @options.each do |o| %>
-            <div class="my-3">
-                <%= o.option_text %>
-                <% bar_len = ((o.votes.to_f / votersArr.length.to_f) * 100).round %>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:<%= bar_len %>%"><%= o.votes %></div>
-                </div>
-		<% end %>
-        </div>
-        <hr>
-	<% end %>
 
 	<div class="card">
 		<h3>Comments (<%= @question.comments.size %>)</h3>

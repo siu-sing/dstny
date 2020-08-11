@@ -11,6 +11,7 @@
         Username: <%= @user.username %> <br>
         Email: <%= @user.email %> <br>
         Profile Description: <%= @user.profile_description %> <br>
+        <%#= button_to "Edit profile", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :edit %>
     </div>
     <br>
 
@@ -21,9 +22,9 @@
     
     <% current_user.questions.each do |ques| %>
     <div class="card">
-        <h3 class="card-header"> <%= ques.description %> </h3>
+        <h3 class="card-header"> <%= ques.question_text %> </h3>
         <div class="card-body">
-            <p class="card-text"> <%= ques.question_text %> </p>
+            <p class="card-text"> <%= ques.description %> </p>
         </div>
     </div> <br>
     <% end %>

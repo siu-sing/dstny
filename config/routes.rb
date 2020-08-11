@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+#   get 'categories/index'
+#   get 'categories/new'
+#   get 'categories/create'
+#   get 'categories/edit'
+#   get 'categories/update'
+#   get 'categories/show'
+#   get 'categories/destroy'
+get 'categories/index'
+
   get "comments/index"
   get "comments/create"
   get "comments/new"
@@ -21,6 +30,8 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  resources :categories
+
   resources :users
 
   resources :users do
@@ -33,6 +44,10 @@ Rails.application.routes.draw do
 
   resources :questions do
     resources :options
+  end
+
+  resources :category do
+    resources :questions
   end
 
   # post '/questions/:id', to: 'questions#updateVote'
