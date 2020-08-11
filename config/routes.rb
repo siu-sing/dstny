@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
 
   #   get 'categories/index'
   #   get 'categories/new'
@@ -9,6 +10,26 @@ Rails.application.routes.draw do
   #   get 'categories/destroy'
   get "categories/index"
 
+=======
+<<<<<<< HEAD
+#   get 'categories/index'
+#   get 'categories/new'
+#   get 'categories/create'
+#   get 'categories/edit'
+#   get 'categories/update'
+#   get 'categories/show'
+#   get 'categories/destroy'
+get 'categories/index'
+
+  get "comments/index"
+  get "comments/create"
+  get "comments/new"
+  get "comments/update"
+  get "comments/destroy"
+  get "comments/edit"
+  get "comments/show"
+=======
+>>>>>>> included edit button
   # get "comments/index"
   # get "comments/create"
   # get "comments/new"
@@ -16,6 +37,10 @@ Rails.application.routes.draw do
   # get "comments/destroy"
   # get "comments/edit"
   # get "comments/show"
+<<<<<<< HEAD
+=======
+>>>>>>> included edit button
+>>>>>>> included edit button
   # get 'questions/index'
   # get 'questions/new'
   # get 'questions/create'
