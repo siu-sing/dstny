@@ -2,27 +2,35 @@
 <p>Find me in app/views/questions/show.html.erb</p>
 <div class="container">
 
-	<% if current_user %>
-	<% if current_user.id == @question.user.id %>
-	<%= link_to 'Delete', question_path(@question), method: "delete", data: {title: 'Delete Poll', confirm: 'Are you sure?'} , class: "btn btn-danger mb-2" %>
-	<% end %>
-	<% end %>
-
-
-	<div class="card">
-		<h5 class="card-header">
-			<% if @question.user.avatar.attached? %>
-			<%= image_tag @question.user.avatar, class: "rounded-circle", height: 50 %>
-			<% else %>
-			<%= image_tag "/default_avatar.png",  height: 50 %>
+	<div class="card mt-2">
+	<div class="card-header">
+	<div class="row">
+		<div class="col-md-6 text-left">
+			<h5>
+				<% if @question.user.avatar.attached? %>
+				<%= image_tag @question.user.avatar, class: "rounded-circle", height: 50 %>
+				<% else %>
+				<%= image_tag "/default_avatar.png",  height: 50 %>
+				<% end %>
+				<%= @question.user.username %> asks...
+			</h5>
+		</div>
+		<div class="col-md-6 text-right">
+			<% if current_user %>
+        		<% if current_user.id == @question.user.id %>
+			
+					<%= link_to 'Elaborate?', edit_question_path(@question), class: "btn btn-warning btn-sm" %>
+            		<%= link_to 'Delete', question_path(@question), method: "delete", data: {title: 'Delete Poll', confirm: 'Are you sure?'} , class: "btn btn-danger btn-sm" %>
+		
+	    		<% end %>
 			<% end %>
-			<%= @question.user.username %> asks...
-		</h5>
-		<div class="card-body">
-			<h5 class="card-title"><%= @question.question_text %> </h5>
-			<p class="card-text"><%= @question.description %></p>
-			<p class="card-text"><%= @question.expiry_date %></p>
+		</div>
+	</div>
+	</div>
 
+		<div class="card-body">
+			<h5 class="card-title"><%= @question.question_text %></h5>
+			<p class="card-text"><em><%= @question.description %></em></p>
 			<div class="container">
 				<div class="row">
 					<% if @question.question_images.attached? %>
@@ -47,64 +55,94 @@
 			</p>
 			<% end %>
 		</div>
-
-		<hr>
-
-		<% votersArr = [] %>
-		<% if current_user %>
-
-		<% @options.each do |o| %>
-		<% votersArr = votersArr + o.voters %>
-		<% end %>
-		<% if votersArr.include? current_user.id %>
-		<p> Thanks for voting! </p>
-		<% else %>
-
-		<%= form_with url: "/options/addvote" do |f|%>
-		<%= f.collection_radio_buttons(:option_id, @options, :id, :option_text) do |b| %>
-
-		<div class="form-check">
-			<div class="form-check-input"><%= b.radio_button %></div>
-			<label class="form-check-label" style="margin-top:0.25rem;"><%= b.label %></label>
-		</div>
-		<% end %>
-
-		<%= f.submit "Vote!", class:"btn btn-success btn-sm"%>
-		<% end %>
-
-
-		<% end %>
-
-		<% else %>
-		<p> Log in to vote </p>
-		<% end %>
-
-		<hr>
-
-		<% if votersArr.any? %>
-		<% @options.each do |o| %>
-		<div class="my-3">
-			<%= o.option_text %>
-			<% bar_len = ((o.votes.to_f / votersArr.length.to_f) * 100).round %>
-			<div class="progress">
-				<div class="progress-bar" role="progressbar" style="width:<%= bar_len %>%"><%= o.votes %></div>
+		
+		<div class="card-footer text-muted">
+		<div class="row">
+			<div class="col-md-6 text-left">
+				<small class="text-danger">Expires: <%= @question.expiry_date.strftime('%d %b %Y, %I:%M%p') %></small>
+		
 			</div>
-			<% end %>
+			<div class="col-md-6 text-right">
+		
+    		<small> Posted: <%= (@question.created_at + 8.hours).strftime('%d %b %Y, %I:%M%p') %></small>
+		
+  			</div>
 		</div>
-		<hr>
-		<% end %>
+		</div>
 	</div>
 
-	<%#= form_with scope: :sitter, url: profile_path, local: true do |form| %>
+<br>
+
+<div class="card mb-4">
+	<div class="card-body">
+
+<% votersArr = [] %>
+<% if current_user %>
+    
+    <% @options.each do |o| %>
+        <% votersArr = votersArr + o.voters %>
+    <% end %>
+    <% if votersArr.include? current_user.id %>
+        <p> Thanks for voting! </p>
+    <% else %>
+
+	        <%= form_with url: "/options/addvote" do |f|%>
+            <%= f.collection_radio_buttons(:option_id, @options, :id, :option_text) do |b| %>
+
+            <div class="form-check">
+                <div class="form-check-input"><%= b.radio_button %></div>
+                <label class="form-check-label" style="margin-top:0.25rem;"><%= b.label %></label>
+            </div>
+            <% end %>
+
+			<hr>
+            <%= f.submit "Vote!", class:"btn btn-outline-success btn-sm"%>
+        <% end %>
+	
+    <% end %>
+
+<% else %>
+	
+	<%= link_to "Sign in", new_user_session_path %> to vote!
+	
+<% end %>
+</div>
+</div>
 
 
-	<div class="card">
-		<h3>Comments (<%= @question.comments.size %>)</h3>
+
+	<% if votersArr.any? %>
+		<div class="card">
+		
+		<div class="card body py-2">
+	    <% @options.each do |o| %>
+	
+            <div class="container my-2">
+                <p><%= o.option_text %></p>
+                <% bar_len = ((o.votes.to_f / votersArr.length.to_f) * 100).round %>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width:<%= bar_len %>%"><%= o.votes %></div>
+                </div>
+			</div>
+		<% end %>
+        	
+		
+		</div>
+	</div>
+        
+	<% end %>
+
+
+	<div class="card mt-4">
+		<h5 class="card-header">Comments (<%= @question.comments.size %>)</h5>
+	<div class="card-body">
+		
 
 		<%= render partial: 'questions/comment'%>
 		<% if user_signed_in? %>
 		<%= render partial: 'comments/form' %>
 		<% end %>
-
 	</div>
+	</div>
+
 </div>

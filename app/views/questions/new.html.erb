@@ -34,7 +34,9 @@
     </div>
     <br>
     <div class="form-row">
-        <%= q.label :question_images, "Images" %>
+        <%= q.label :question_images, "Upload Images" %>
+    </div>
+    <div class="form-row">
         <%= q.file_field :question_images, multiple: true, direct_upload: true, class: "btn btn-dark btn-sm" %>
       </div>
     <hr>
@@ -72,9 +74,7 @@
 
     </div>
 
-    <br>
-    
-    <%= q.submit "Submit", class: "btn btn-primary btn-sm" %>
+    <%= q.submit "Submit", class: "btn btn-success btn-sm px-4" %>
+    <%= link_to  "Cancel", questions_path, class:"btn btn-danger btn-sm px-4" %>
     <% end %>
-
 </div>
