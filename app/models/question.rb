@@ -8,4 +8,10 @@ class Question < ApplicationRecord
   accepts_nested_attributes_for :options
 
   has_many_attached :question_images
+
+  validates :question_text, presence: true, length: { minimum: 5 }
+  # validates :expiry_date, presence: true
+ 
+
+
 end

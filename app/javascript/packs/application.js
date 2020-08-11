@@ -25,7 +25,7 @@ import { addOptionInput } from "packs/addOptionInput"
 
 document.addEventListener("turbolinks:load", ()=> {
     
-    if (document.querySelector("#fieldsetContainer")) {
+    if (document.querySelector(".listForm")) {
         console.log('in app.js')
         addOptionInput()
       

@@ -1,51 +1,73 @@
 <h1>Questions#new</h1>
 <p>Find me in app/views/questions/new.html.erb</p>
-<div class="container">
+<div class="container mb-5">
 
-  <%= simple_form_for @question do |q| %>
+<% if @question.errors.any? %>
+    <%= pluralize(@question.errors.count, "error") %>
+    <% @question.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger"> <%= message %> </div>
+    <% end %>
+<% end %>
+
+
+  <%= form_for @question do |q| %>
     <div class="form-row">
       <%= q.label :question_text, "Question" %>
-      <%= q.text_field :question_text, class: "form-control" %>
+      <%= q.text_field :question_text, class: "form-control", placeholder: "Should I...? (Required)" %>
     </div>
     <div class="form-row">
       <%= q.label :description, "Description" %>
-      <%= q.text_area :description, class: "form-control" %>
+      <%= q.text_area :description, class: "form-control", placeholder: "(Optional)" %>
     </div>
-    <div class="form-row">
-      <%= q.label :expiry_date, "Expiry Date" %>
-      <%= q.date_field :expiry_date, class: "form-control" %>
-    </div>
+    <br>
+
+      <div class="badge badge-warning"> Current Time: <%= Time.now.strftime("%d %b %Y, %I:%M%p") %></div>
+    <br>
+      <div class="badge badge-warning mb-2">Poll must be opened at least  1 hour from current time</div>
 
     <div class="form-row">
+      <%= q.label :expiry_date, "Expiry Date" %>
+      
+      <%= q.datetime_local_field :expiry_date, min: (Time.now + 1*60*60).strftime("%d-%m-%YT%H:%M"), value:"#{(Time.now + 1*60*60).strftime("%Y-%m-%dT%H:%M")}" %>
+      <%#= q.datetime_local_field :expiry_date, min: Time.now.strftime("%d-%m-%YT%H:%M") %>
+
+    </div>
+    <br>
+    <div class="form-row">
         <%= q.label :question_images, "Images" %>
-        <%= q.file_field :question_images, multiple: true, direct_upload: true %>
+        <%= q.file_field :question_images, multiple: true, direct_upload: true, class: "btn btn-dark btn-sm" %>
       </div>
     <hr>
 
     <h5> Options </h5>
 
 <%#= q.simple_fields_for :options do |b| %>
-    <div id="fieldsetContainer">
-      <fieldset id="0">
+    <div class="listForm">
+      <%# <fieldset id="0"> %>
         <%#= b.text_field :option_text, class: "form-control" %>
 
-        <input class="form-control mb-2" type="text" name="question[options_attributes][0][option_text]" id="question_options_attributes_0_option_text" placeholder="yes">
-              
-      </fieldset>
-      <fieldset id="1">
-        
-         <input class="form-control mb-2" type="text" name="question[options_attributes][1][option_text]" id="question_options_attributes_1_option_text" placeholder="no">
+          <div class="row mb-3" data-id="0">
+            <div class="col-11">
+                <input class="form-control mb-2" type="text" name="question[options_attributes][0][option_text]" id="question_options_attributes_0_option_text" placeholder="Option (Required)">
+            </div>
+          <div class="col-1"></div>
+          </div>
 
-      </fieldset> 
+        <div class="row mb-3" data-id="1">
+            <div class="col-11">
+              <input class="form-control mb-2" type="text" name="question[options_attributes][1][option_text]" id="question_options_attributes_1_option_text" placeholder="Option (Required)">
+            </div>
+            <div class="col-1"></div>
+        </div>
 
     </div>
 
-      <button class="btn btn-sm btn-warning mb-2" type="button" id="addBook">Add Options</button>
+      <button class="btn btn-sm btn-warning mb-2" id="addMore">Add Options</button>
 
       <br>
 
     <%= q.submit "Submit", class: "btn btn-primary btn-sm" %>
 
-  <%end%>
+  <% end %>
 
 </div>
