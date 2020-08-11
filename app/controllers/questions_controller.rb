@@ -26,9 +26,6 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def show
     @comment = Comment.new
     @question = Question.find(params[:id])
@@ -36,6 +33,18 @@ class QuestionsController < ApplicationController
     if user_signed_in?
       @comment["user_id"] = current_user.id
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @question.update(question_params)
+      redirect_to question_path(@question.id)
+    else
+      render :edit
+    end 
+
   end
 
   def destroy
