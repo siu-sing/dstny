@@ -23,7 +23,6 @@ class CommentsController < ApplicationController
   def update
     @question = Question.find(params[:question_id])
     @comment = Comment.find(params[:id])
-
     if @comment.update(comment_params)
       flash[:notice] = "Comment Edited!"
       redirect_to question_path(@question.id)
