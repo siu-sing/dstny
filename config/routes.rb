@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   # get "comments/destroy"
   # get "comments/edit"
   # get "comments/show"
-
   # get 'questions/index'
   # get 'questions/new'
   # get 'questions/create'
