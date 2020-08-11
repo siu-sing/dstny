@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   #   get 'categories/index'
   #   get 'categories/new'
@@ -30,6 +31,8 @@ get 'categories/index'
   get "comments/show"
 =======
 >>>>>>> included edit button
+=======
+>>>>>>> included edit button
   # get "comments/index"
   # get "comments/create"
   # get "comments/new"
@@ -38,8 +41,11 @@ get 'categories/index'
   # get "comments/edit"
   # get "comments/show"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> included edit button
+>>>>>>> included edit button
+=======
 >>>>>>> included edit button
   # get 'questions/index'
   # get 'questions/new'
