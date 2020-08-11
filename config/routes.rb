@@ -8,13 +8,14 @@ Rails.application.routes.draw do
   #   get 'categories/destroy'
   get "categories/index"
 
-  get "comments/index"
-  get "comments/create"
-  get "comments/new"
-  get "comments/update"
-  get "comments/destroy"
-  get "comments/edit"
-  get "comments/show"
+  # get "comments/index"
+  # get "comments/create"
+  # get "comments/new"
+  # get "comments/update"
+  # get "comments/destroy"
+  # get "comments/edit"
+  # get "comments/show"
+
   # get 'questions/index'
   # get 'questions/new'
   # get 'questions/create'
@@ -55,7 +56,9 @@ Rails.application.routes.draw do
   # post '/questions/:id', to: 'questions#updateVote'
 
   resources :questions do
-    resources :comments
+    resources :comments do
+      patch :edit
+    end
   end
 
   root "questions#index"
