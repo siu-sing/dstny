@@ -27,7 +27,8 @@
 
     <div class="form-row">
       <%= q.label :expiry_date, "Expiry Date" %>
-      
+      </div>
+      <div class="form-row">
       <%= q.datetime_local_field :expiry_date, min: (Time.now + 1*60*60).strftime("%d-%m-%YT%H:%M"), value:"#{(Time.now + 1*60*60).strftime("%Y-%m-%dT%H:%M")}" %>
       <%#= q.datetime_local_field :expiry_date, min: Time.now.strftime("%d-%m-%YT%H:%M") %>
 
