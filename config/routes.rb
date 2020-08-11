@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 #   get 'categories/update'
 #   get 'categories/show'
 #   get 'categories/destroy'
+get 'categories/index'
+
   get "comments/index"
   get "comments/create"
   get "comments/new"

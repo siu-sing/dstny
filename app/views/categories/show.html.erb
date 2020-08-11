@@ -1,9 +1,21 @@
-<h1><%#= @category.cat_type %></h1>
-
-
+<h1> # <%= @category.cat_type %> - Category </h1> <br>
     <% @questions.each do |ca| %>
-      <%= ca.question_text  %>
-    <% end %>
+    <div class="card">
+        <h3 class="card-header">   <%= ca.question_text  %>  </h3>
+        <h6 class="card-header">   <%= ca.description  %>  </h6>
+    </div> <br>
+     <% end %>
 
 
-    show all questions related to the category
+<%# @questions.each do |que| %>
+    <h1>
+      <%# que.to_s.split(' ').each do |word| %>
+          <%# if word.start_with?('#') %>
+            <%#= link_to word, finds_index_path(query: word) %>
+          <%#else %>
+            <%#= word %>
+          <%#end %>
+      <%# end %>
+    </h1>
+
+  <%# end %>

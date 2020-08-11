@@ -16,25 +16,44 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    # p question_params.cat_type
     @question = Question.new(question_params)
     @question["user_id"] = current_user.id
 
-    if @question.save
-      redirect_to questions_path
+    category = @question.category.cat_type
+
+    # if category is found in category database
+    if Category.find_by(cat_type: category) != nil
+      #assign the available category to the question
+      @question.category = Category.find_by(cat_type: category)
+
+      if @question.save
+        redirect_to question_path(@question.id)
+      else
+        render :new
+      end
     else
-      render :new
+      #this will create a new category AND save the question at the same time
+      # if Category = params["questions"]["category_attributes"]["cat_type"] -  RANDALL WILL REMOVE
+      # if @category !== params["questions"]["category_attributes"]["cat_type"] -  RANDALL WILL REMOVE
+      if @question.save
+        redirect_to question_path(@question.id)
+      else
+        render :new
+      end
     end
-    # @question.build_category.save
-
-    # if @category. params = avail
-    #   flash[:notice] = "category same, use same!"
-    #   redirect_to question_path(@question.id)
-    # else
-    #   flash[:alert] = "category not same, create new!"
-    #   redirect_to question_path(@question.id)
-    # end
-
   end
+
+  # RANDALL WILL REMOVE
+  # # if <this category already exists, set the question's category_id to the id of the found category> - no need Else
+  #         @question.category_id = @category.id
+  #     else
+  #         <create a new category here, then assign the question category id to the newly-created ID>
+  #     end
+  #         @question.category_id = @category.id
+  #    check thorugh all cateogry
+  # randall - probably not needed 1pm tues
+  # @question.build_category.save
 
   def edit
   end

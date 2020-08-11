@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
 
   def create
     @question = Question.find(params[:question_id])
-    @category['question_id'] = @question.id
+    @category['question_id'] = @question.id #one to one
     
     if @category.save
         flash[:notice] = "category created!"
@@ -29,8 +29,18 @@ class CategoriesController < ApplicationController
 
     @category = Category.find(params[:id])
     @questions = @category.questions
-  end
+        # def show
+        #   if params[:query].start_with?('#')
+        #     query  = params[:query].gsub('#', '')
+        #     @questions = Question.joins(:hash_tags).where(hash_tags: {name: query})
+        #   else
+        #     @questions = Question.where("description like ?", "%#{params[:query]}%")
+        #   end
+        # end
+
+    end
 
   def destroy
   end
+
 end

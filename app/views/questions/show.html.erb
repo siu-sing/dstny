@@ -40,7 +40,9 @@
             <%= link_to "Flag as Inappropriate", questions_flag_path(question_id: @question.id), method: "post" %>
         </div>
             <% end %>
-			<p class="card-text"><%= @category.cat_type %></p>
+			<p class="card-text">Category: # 
+            <%= link_to @category.cat_type, category_path(@category.id) %>
+            </p>
 		</div>
 
 <hr>

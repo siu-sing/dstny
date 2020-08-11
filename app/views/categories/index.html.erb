@@ -1,6 +1,11 @@
-<h1><%#= @category.cat_type %></h1>
+<h1> All Categories </h1> <br>
 
 
     <% @categories.each do |ca| %>
-      <%= ca.cat_type  %>
+
+    <div class="card">
+<h3 class="card-header"># <%= link_to ca.cat_type, category_path(ca.id) %> </h3>
+    </div> <br>
+    
+
     <% end %>
