@@ -3,42 +3,55 @@
 <div class="container mb-5">
 
 <% if @question.errors.any? %>
-    <%= pluralize(@question.errors.count, "error") %>
-    <% @question.errors.full_messages.each do |message| %>
-        <div class="alert alert-danger"> <%= message %> </div>
+  <div id="error_explanation" class="text-danger">
+    <h2><%= pluralize(@question.errors.count, "error") %> prohibited this poll from being created:</h2>
+ 
+    <ul>
+    <% @question.errors.full_messages.each do |msg| %>
+      <li class="font-italic"><%= msg %></li>
     <% end %>
+    </ul>
+  </div>
 <% end %>
 
-
+<div>
   <%= form_for @question do |q| %>
     <div class="form-row">
-      <%= q.label :question_text, "Question" %>
+      <h5><%= q.label :question_text, "Question" %></h5>
+    </div>
+    <div class="form-row">
       <%= q.text_field :question_text, class: "form-control", placeholder: "Should I...? (Required)" %>
     </div>
+
+    <hr>
+
     <div class="form-row">
-      <%= q.label :description, "Description" %>
+     <h5> <%= q.label :description, "Description" %> </h5>
       <%= q.text_area :description, class: "form-control", placeholder: "(Optional)" %>
     </div>
-    <br>
+    
 
-      <div class="badge badge-warning"> Current Time: <%= Time.now.strftime("%d %b %Y, %I:%M%p") %></div>
-    <br>
-      <div class="badge badge-warning mb-2">Poll must be opened at least  1 hour from current time</div>
+    <hr>
 
     <div class="form-row">
-      <%= q.label :expiry_date, "Expiry Date" %>
+      <h5><%= q.label :expiry_date, "Expiry Date" %></h5>
       </div>
-      <div class="form-row">
-      <%= q.datetime_local_field :expiry_date, min: (Time.now + 1*60*60).strftime("%d-%m-%YT%H:%M"), value:"#{(Time.now + 1*60*60).strftime("%Y-%m-%dT%H:%M")}" %>
-      <%#= q.datetime_local_field :expiry_date, min: Time.now.strftime("%d-%m-%YT%H:%M") %>
+
+      <div class="badge badge-info"> Current Time: <%= Time.now.strftime("%d %b %Y, %I:%M%p") %></div>
+    <br>
+      <div class="badge badge-danger">Poll must be opened at least  1 hour from current time</div>
+
+      <div class="form-row mt-3">
+      <%= q.datetime_local_field :expiry_date, min: (Time.now + 1*60*60).strftime("%d-%m-%YT%H:%M"), value:"#{(Time.now + 1*60*60).strftime("%Y-%m-%dT%H:%M")}", class: "datetime-box" %>
 
     </div>
-    <br>
+    
+    <hr>
     <div class="form-row">
-        <%= q.label :question_images, "Upload Images" %>
+        <h5><%= q.label :question_images, "Upload Images" %> </h5>
     </div>
     <div class="form-row">
-        <%= q.file_field :question_images, multiple: true, direct_upload: true, class: "btn btn-dark btn-sm" %>
+        <%= q.file_field :question_images, multiple: true, direct_upload: true, class: "btn btn-dark btn-sm form-width" %>
       </div>
     <hr>
 
@@ -46,10 +59,14 @@
     <%# <input  class="form-control mb-2" type="text" name="cat_type" 
     placeholder="category">  %>
 
+  <div class="form-row my-4">
     <%= q.fields_for :category, @question.build_category do |f| %>
-    <%= f.text_field :cat_type, class: "form-control" %>
+    <%= f.text_field :cat_type, class: "form-control", placeholder: "food" %>
     <% end %>
-    
+  </div>
+  
+  <hr>
+
     <h5> Options </h5>
 
 <%#= q.simple_fields_for :options do |b| %>
@@ -59,14 +76,14 @@
 
           <div class="row mb-3" data-id="0">
             <div class="col-11">
-                <input class="form-control mb-2" type="text" name="question[options_attributes][0][option_text]" id="question_options_attributes_0_option_text" placeholder="Option (Required)">
+                <input class="form-control mb-1" type="text" name="question[options_attributes][0][option_text]" id="question_options_attributes_0_option_text" placeholder="Option (Required)">
             </div>
           <div class="col-1"></div>
           </div>
 
         <div class="row mb-3" data-id="1">
             <div class="col-11">
-              <input class="form-control mb-2" type="text" name="question[options_attributes][1][option_text]" id="question_options_attributes_1_option_text" placeholder="Option (Required)">
+              <input class="form-control mb-1" type="text" name="question[options_attributes][1][option_text]" id="question_options_attributes_1_option_text" placeholder="Option (Required)">
             </div>
             <div class="col-1"></div>
         </div>
@@ -74,7 +91,7 @@
 
       <button class="btn btn-sm btn-warning mb-2" id="addMore">Add Options</button>
 
-<br>
+<hr class="my-3">
 
     <%= q.submit "Submit", class: "btn btn-success btn-sm px-4" %>
     <%= link_to  "Cancel", questions_path, class:"btn btn-danger btn-sm px-4" %>

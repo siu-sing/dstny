@@ -11,7 +11,7 @@ function addOptionInput(){
   
     let html = `<div class="row mb-3" data-id="${num}">
                 <div class="col-md-11">
-                    <input class="form-control mb-2" type="text" name="question[options_attributes][${num}][option_text]" id="question_options_attributes_${num}_option_text" placeholder="Option (Required)">
+                    <input class="form-control mb-1" type="text" name="question[options_attributes][${num}][option_text]" id="question_options_attributes_${num}_option_text" placeholder="Option (Required)">
                 </div>
                 <div class="col-md-1 stayEnd"><button class="btn btn-danger del"> x</button></div>
                 </div>`;

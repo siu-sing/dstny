@@ -1,43 +1,63 @@
-<h1>Questions#index</h1>
-<p>Find me in app/views/questions/index.html.erb</p>
+<%# <h1>Questions#index</h1> %>
+<%# <p>Find me in app/views/questions/index.html.erb</p> %>
 
-<div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
-        <% @questions.each do |ques| %>
-        <div div class="col mb-6">
-            <div class="card mb-2">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-6 text-left">
-                            <h5>
-                                <% if ques.user.avatar.attached? %>
-                                    <%= link_to user_path(ques.user) do %>
-                                        <%= image_tag ques.user.avatar, class: "rounded-circle", height: 50 %>
-                                    <% end %>
-                                <% else %>
-                                    <%= link_to user_path(ques.user) do %>
-                                        <%= image_tag "/default_avatar.png", height: 50 %>
-                                    <% end %>
-                                <% end %>
-                                <%= link_to ques.user.username, user_path(ques.user) %> asks...
-                            </h5>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <%= link_to "Vote", question_path(ques.id), class: "btn btn-outline-info btn-sm px-4" %>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h6 class="card-title"><%= ques.question_text %></h6>
-                    <small class="card-text"> # <%= link_to ques.category.cat_type, category_path(ques.category.id) %> </small> <br>
-                    <small class="card-text"> Expires: <%= ques.expiry_date.strftime('%d %b %Y, %I:%M%p') %></small>
-                </div>
-                <div class="card-footer text-muted text-right">
-                    <small> Posted: <%= (ques.created_at + 8.hours).strftime('%d %b %Y, %I:%M%p') %></small>
-                </div>
-            </div>
-        </div>
-        <% end %>
+<% if !user_signed_in? %>
+
+    <div class="jumbotron text-center">
+        <h4 class="display-4">Sick of Decisions?</h4>
+
+  <%# <hr class="my-4"> %>
+    	<p>Let us render your destiny!</p>
+    
+    	<%= link_to "Start Today!", new_user_registration_path, class:"btn btn-dark btn-lg" %> 
+		
+		<%= link_to "Sign In", new_user_session_path, class:"btn btn-dark btn-lg px-4" %> 
+
     </div>
+	<% end %>
+    
+
+<div class="container mt-4">
+
+	<div class="row row-cols-1 row-cols-md-2">
+		<% @questions.each do |ques| %>
+
+		<div div class="col mb-6">
+
+			<div class="card mb-2">
+				<div class="card-header">
+					<div class="row">
+						<div class="col-md-6 text-left">
+							<h5>
+							<% if ques.user.avatar.attached? %>
+							<%= image_tag ques.user.avatar, class: "rounded-circle", height: 50 %>
+							<% else %>
+							<%= image_tag "/default_avatar.png",  height: 50 %>
+							<% end %>
+							<%= ques.user.username %> asks...
+							</h5>
+						</div>
+						<div class="col-md-6 text-right">
+							<%= link_to "Vote", question_path(ques.id), class: "btn btn-outline-info btn-sm px-4" %>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<h6 class="card-title"><%= ques.question_text %></h6>
+					<small class="card-text"> # <%= link_to ques.category.cat_type, category_path(ques.category.id) %> </small> <br>
+					<small class="card-text">Expires: <%= ques.expiry_date.strftime('%d %b %Y, %I:%M%p') %></small>
+					 
+				</div>
+				 <div class="card-footer text-muted text-right">
+    					<small> Posted: <%= (ques.created_at + 8.hours).strftime('%d %b %Y, %I:%M%p') %></small>
+  					</div>
+					
+			</div>
+
+		</div>
+		<% end %>
+
+	</div>
+
 </div>
+>>>>>>> 61ef804... updated icon navbar, added jumbotron to index page, updated styles for question poll creation - calendar input & upload image input, placeholder for category
