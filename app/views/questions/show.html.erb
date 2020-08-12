@@ -138,7 +138,6 @@
 	<% end %>
 
 
-<<<<<<< HEAD
 	<div class="card mt-4">
 		<h5 class="card-header">Comments (<%= @question.comments.size %>)</h5>
 		<div class="card-body">
@@ -153,13 +152,6 @@
 			<small><%= link_to "Sign in", new_user_session_path %> to comment!</small>
 			<% end %>
 		</div>
-=======
-		<%= render partial: 'questions/comment'%>
-		<% if user_signed_in? %>
-		<%= render partial: 'comments/form' %>
-		<% end %>
-		
->>>>>>> b53af1e... included edit button
 	</div>
 
 </div>
