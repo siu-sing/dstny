@@ -105,6 +105,22 @@ class QuestionsController < ApplicationController
     redirect_to question_path(@question.id)
   end
 
+  def toggle
+    puts "@@@@@@@@@@@@@@@@@"
+    puts params[:question_id]
+    puts "@@@@@@@@@@@@@@@@@"
+
+    @question = Question.find(params[:question_id])
+    @question.status = !@question.status
+
+    if @question.save
+      redirect_to question_path(@question.id)
+    else
+      flash[:warning] = "Please try again."
+      redirect_to question_path(@question.id)
+    end
+  end
+
   private
 
   def question_params

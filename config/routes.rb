@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-#   get 'categories/index'
-#   get 'categories/new'
-#   get 'categories/create'
-#   get 'categories/edit'
-#   get 'categories/update'
-#   get 'categories/show'
-#   get 'categories/destroy'
-get 'categories/index'
+  #   get 'categories/index'
+  #   get 'categories/new'
+  #   get 'categories/create'
+  #   get 'categories/edit'
+  #   get 'categories/update'
+  #   get 'categories/show'
+  #   get 'categories/destroy'
+  get "categories/index"
 
   get "comments/index"
   get "comments/create"
@@ -26,6 +26,8 @@ get 'categories/index'
   post "options/addvote"
 
   post "questions/flag"
+
+  post "questions/toggle"
 
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
