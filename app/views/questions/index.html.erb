@@ -2,18 +2,19 @@
 <%# <p>Find me in app/views/questions/index.html.erb</p> %>
 
 <% if !user_signed_in? %>
+<div class ="jumb-bg text-center py-4">
+		<div class="jumbotron jumb-anim">
+			<h4 class="display-4">Sick of Decisions?</h4>
 
-    <div class="jumbotron text-center">
-        <h4 class="display-4">Sick of Decisions?</h4>
+	<%# <hr class="my-4"> %>
+			<p>Let us render your destiny today!</p>
 
-  <%# <hr class="my-4"> %>
-    	<p>Let us render your destiny!</p>
-    
-    	<%= link_to "Start Today!", new_user_registration_path, class:"btn btn-dark btn-lg" %> 
+		</div>
+
+	    	<%= link_to "Sign Up", new_user_registration_path, class:"btn btn-outline-warning jumb-btn px-4" %> 
 		
-		<%= link_to "Sign In", new_user_session_path, class:"btn btn-dark btn-lg px-4" %> 
-
-    </div>
+		<%#= link_to "Sign In", new_user_session_path, class:"btn btn-outline-warning px-4 jumb-btn" %> 
+	</div>
 	<% end %>
     
 
@@ -32,13 +33,13 @@
 							<% if ques.user.avatar.attached? %>
 							<%= image_tag ques.user.avatar, class: "rounded-circle", height: 50 %>
 							<% else %>
-							<%= image_tag "/default_avatar.png",  height: 50 %>
+							<%= image_tag "/default_avatar.png",  height: 50, class:"def-ava" %>
 							<% end %>
 							<%= ques.user.username %> asks...
 							</h5>
 						</div>
 						<div class="col-md-6 text-right">
-							<%= link_to "Vote", question_path(ques.id), class: "btn btn-outline-info btn-sm px-4" %>
+							<%= link_to "Vote", question_path(ques.id), class: "btn btn-outline-warning btn-sm px-4" %>
 						</div>
 					</div>
 				</div>
