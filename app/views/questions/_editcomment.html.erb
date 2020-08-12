@@ -1,0 +1,12 @@
+<div class="edit_comment" style="display:none">
+<%= form_for [ @question, comment ] do |f| %>
+    <p>
+        <%= f.text_area :comment_text %>
+    </p>
+    <p>
+        <%= f.submit 'Edit', class:"btn btn-warning btn-sm ml-2" %>
+    </p>
+<% end %>
+</div> 
+
+
