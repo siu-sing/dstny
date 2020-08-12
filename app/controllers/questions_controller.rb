@@ -11,12 +11,9 @@ class QuestionsController < ApplicationController
     @question = Question.new
     @question.options.build
     @question.build_category
-    # puts current_user
-    # puts current_user.id
   end
 
   def create
-    # p question_params.cat_type
     @question = Question.new(question_params)
     @question["user_id"] = current_user.id
 
@@ -26,16 +23,12 @@ class QuestionsController < ApplicationController
     if Category.find_by(cat_type: category) != nil
       #assign the available category to the question
       @question.category = Category.find_by(cat_type: category)
-
       if @question.save
         redirect_to question_path(@question.id)
       else
         render :new
       end
     else
-      #this will create a new category AND save the question at the same time
-      # if Category = params["questions"]["category_attributes"]["cat_type"] -  RANDALL WILL REMOVE
-      # if @category !== params["questions"]["category_attributes"]["cat_type"] -  RANDALL WILL REMOVE
       if @question.save
         redirect_to question_path(@question.id)
       else
@@ -44,16 +37,6 @@ class QuestionsController < ApplicationController
     end
   end
 
-  # RANDALL WILL REMOVE
-  # # if <this category already exists, set the question's category_id to the id of the found category> - no need Else
-  #         @question.category_id = @category.id
-  #     else
-  #         <create a new category here, then assign the question category id to the newly-created ID>
-  #     end
-  #         @question.category_id = @category.id
-  #    check thorugh all cateogry
-  # randall - probably not needed 1pm tues
-  # @question.build_category.save
 
   def show
     @comment = Comment.new

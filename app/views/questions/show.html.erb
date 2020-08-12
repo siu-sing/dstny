@@ -54,9 +54,7 @@
 			</div>
 			<% end %>
 			<% if @category.cat_type != "" %>
-			<p class="card-text">Category: 
-				<%= link_to @category.cat_type, category_path(@category.id) %>
-			</p>
+			<p class="card-text">#<%= link_to @category.cat_type, category_path(@category.id) %> </p>
 			<% end %>
 		</div>
 
