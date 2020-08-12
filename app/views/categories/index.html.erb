@@ -4,7 +4,7 @@
     <% @categories.each do |ca| %>
 
     <div class="card container">
-        <h3 class="card-header"># <%= link_to ca.cat_type, category_path(ca.id) %> </h3>
+        <h3 class="card-header"> <%= link_to "##{ca.cat_type}", category_path(ca.id) %> </h3>
     </div> <br>
     
 

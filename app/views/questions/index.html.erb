@@ -49,10 +49,7 @@
 				<%#= link_to question_path(ques.id) do %>
 
 					<h6 class="card-title"><%= ques.question_text %></h6>
-					
-					<small class="card-text cat-index"> # <%= link_to ques.category.cat_type, category_path(ques.category.id) %> 
-					</small> 
-					<br>
+					<span class="badge badge-warning"> <%= link_to"##{ques.category.cat_type}", category_path(ques.category.id) %> </span> <br>
 					<small class="card-text">Expires: <%= ques.expiry_date.strftime('%d %b %Y, %I:%M%p') %></small>
 
 				</div>
