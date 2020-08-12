@@ -40,25 +40,26 @@
 				<div class="row">
 					<% if @question.question_images.attached? %>
 					    <% @question.question_images.each do |img| %>
-                        <div class="col text-center">
-                            <div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
-                            <div><%= img.filename %></div>
-                        </div>
+                <div class="col text-center">
+                        <div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
+                        <div><%= img.filename %></div>
+                </div>
                         <% end %>
 					<% end %>
 				</div>
-			</div>
-				
+            </div>
 
+        <% if @category.cat_type != "" %>
+            <span class="badge badge-warning"> <%= link_to "##{@category.cat_type}", category_path(@category.id) %></span> <br>
+        <% end %>
+				
 		<% if user_signed_in? %>
             <div class="small text-right">
             <%= link_to "Flag as Inappropriate", questions_flag_path(question_id: @question.id), method: "post" %>
-            </div>
-        <% end %>
-        <% if @category.cat_type != "" %>
-            <span class="badge badge-warning"> <%= link_to "##{@category.cat_type}", category_path(@category.id) %></span> <br>
+            <% end %>
 		</div>
-        <% end %>
+            </div>
+
 
 		<div class="card-footer text-muted">
 			<div class="row">
