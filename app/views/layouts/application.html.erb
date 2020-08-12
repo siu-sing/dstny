@@ -7,6 +7,9 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/faq256.png" type="image/png" >
 </head>
 
 <body>
@@ -19,10 +22,10 @@
     <% end %>
 
     <%# Navbar starts %>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom">
    <%= link_to questions_path do %>
-        <div class="navbar-brand" href="#">
-            <img src="/faq256.png" width="30" height="30" alt="poll" loading="lazy">
+        <div class="navbar-brand">
+            <img src="/faq256.png" width="30" height="30" alt="poll" loading="lazy"><span id="brand" class="pl-2">DSTNY</span>
         </div>
     <%end%>
     <%# <a class="navbar-brand" href="#">Navbar</a> %>
@@ -36,13 +39,15 @@
                 <li class="nav-item">
                     <%= link_to  "Polls", questions_path, class:"nav-link"%>
                 </li>
-                <li class="nav-item">
-                    <%= link_to  "New Poll", new_question_path, class:"nav-link"%>
-                </li>
+                <% if user_signed_in? %>
+                    <li class="nav-item">
+                        <%= link_to  "New Poll", new_question_path, class:"nav-link"%>
+                    </li>
+                <% end %>
                 <li class="nav-item">
                     <%= link_to  "Categories", categories_path(@categories), class:"nav-link"%>
                 </li>
-                <li class="nav-item dropdown">
+                <%# <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Dropdown
@@ -53,13 +58,13 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                </li>
+                </li> %>
                 <li class="nav-item">
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">
+                <button class="btn btn-outline-warning my-2 my-sm-0 mr-2" type="submit">
                     Search
                 </button>
             </form>
@@ -70,7 +75,7 @@
                 <% if user_signed_in? %>
                 <%#= current_user.email %>
                 <li class="nav-item">
-                    <%= link_to current_user.username, user_path(current_user), class:"nav-link mx-2" %>
+                    <%= link_to current_user.username, user_path(current_user), class:"nav-link ml-4 mr-2" %>
                 </li>
                 <li class="nav-item">
                     <% if user_signed_in? %>
@@ -80,15 +85,26 @@
                     <% end %>
                 </li>
 
-                <li class="nav-item">
-                    <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"nav-link mx-2"%>
-                </li>
+                <%# <li class="nav-item"> %>
+                    <%#= link_to "Log Out", destroy_user_session_path, method: :delete, class:"nav-link mx-2"%>
+                <%# </li> %>
+
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                    <i class="nav-item fa fa-sign-out fa-2x mt-1 ml-4 mr-2" id="signin" style="width: 30px; height: 30px;" data-toggle="tooltip" data-placement="bottom" title="Sign Out" aria-hidden="true"></i>
+                <% end %>
 
                 <% else %>
-                <%#= link_to "sign up", new_user_registration_path %>
+                <%# = link_to "sign up", new_user_registration_path
                 <li class="nav-item">
                     <%= link_to "Sign In", new_user_session_path, class:"nav-link mx-2" %>
-                </li>
+                    <%# <i class="fa fa-car"></i> %>
+                    
+                <%# </li> %>
+                <%= link_to new_user_session_path do %>
+                    <i class="nav-item fa fa-sign-in fa-2x mt-1 ml-4 mr-2" id="signin" style="width: 30px; height: 30px;" data-toggle="tooltip" data-placement="bottom" title="Sign In" aria-hidden="true"></i>
+                <% end %>
+
+
             </ul>
         </div>
 
@@ -110,10 +126,16 @@
                 background-size: cover;
             }
         </style> %>
+        
         <article>
+        
+        
         <%= yield %>
         </article>
-        <footer>© JARS 2020</footer>
+        <footer>
+        <div id="cp-footer">© JARS 2020 </div>
+        <a href="https://github.com/siu-sing/dstny"><img src="/GitHubLight32px.png" style="width:15px; height:15px; margin-top: 5px;"></a>
+        </footer>
 </body>
 <%# </div> %>
 

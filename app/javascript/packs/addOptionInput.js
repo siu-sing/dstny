@@ -34,6 +34,10 @@ function addOptionInput(){
   });
   };
   
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
   export { addOptionInput }
   
 
