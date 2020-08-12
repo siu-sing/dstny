@@ -39,10 +39,15 @@ class QuestionsController < ApplicationController
 
   def show
 <<<<<<< HEAD
+<<<<<<< HEAD
     @comment = Comment.new()
 =======
     @comment = Comment.new.()
 >>>>>>> add images to comments
+=======
+
+    @comment = Comment.new()
+>>>>>>> added pics
     # @comment.images.attach(params[:comment][:comment_images])
     @question = Question.find(params[:id])
     @options = @question.options
