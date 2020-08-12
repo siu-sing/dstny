@@ -1,16 +1,14 @@
 <div>
     <% @question.comments.each do |comment| %>
    
-    <% if user_signed_in? && comment.question.user_id == current_user.id && 
-    comment.user_id == current_user.id %>
+    <% if user_signed_in? && comment.question.user_id == comment.user_id %>
     <div class="note">
     <% end %>
 
     <h4>Comment by <%= comment.user.username%></h4>
     <p class="comment"><%= comment.comment_text %></p>
 
-    <% if user_signed_in? && comment.question.user_id == current_user.id && 
-    comment.user_id == current_user.id %>
+    <% if user_signed_in? && comment.question.user_id == comment.user_id %>
     </div>
     <% end %>
     <%= render  "editcomment", comment: comment %>
