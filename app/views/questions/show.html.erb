@@ -39,23 +39,22 @@
 			<div class="container">
 				<div class="row">
 					<% if @question.question_images.attached? %>
-					<% @question.question_images.each do |img| %>
-					<div class="col text-center">
-						<div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
-						<div><%= img.filename %></div>
-					</div>
-					<% end %>
+					    <% @question.question_images.each do |img| %>
+                        <div class="col text-center">
+                            <div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
+                            <div><%= img.filename %></div>
+                        </div>
+                        <% end %>
 					<% end %>
 				</div>
 			</div>
 			<% if user_signed_in? %>
-			<div class="small text-right">
+    			<div class="small text-right">
 				<%= link_to "Flag as Inappropriate", questions_flag_path(question_id: @question.id), method: "post" %>
 			</div>
 			<% end %>
-
 			<% if @category.cat_type != "" %>
-			<p class="card-text">Category: #
+			<p class="card-text">Category: 
 				<%= link_to @category.cat_type, category_path(@category.id) %>
 			</p>
 			<% end %>

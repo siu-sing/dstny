@@ -63,7 +63,7 @@ class QuestionsController < ApplicationController
     if user_signed_in?
       @comment["user_id"] = current_user.id
     end
-    @category = @question.category
+      @category = @question.category
   end
 
   def edit
