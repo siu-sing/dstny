@@ -29,7 +29,9 @@
                         </div>
                         <div class="card-body">
                         <h6 class="card-title"> <%= ques.question_text %></h6>
-                        <h6 class="card-title"> # <%= link_to ques.category.cat_type, category_path(ques.category.id) %> </h6> 
+
+                        <span class="badge badge-warning"> <%= link_to "##{ques.category.cat_type}", category_path(ques.category.id) %></span> <br>
+
                             <small class="card-text"> Expires: <%= ques.expiry_date.strftime('%d %b %Y, %I:%M%p') %></small>
                         </div>
                         <div class="card-footer text-muted text-right">
