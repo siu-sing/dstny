@@ -5,6 +5,7 @@
 
 
 require("packs/addOptionInput")
+require('packs/comments')
 require('jquery')
 require('bootstrap')
 require("@rails/ujs").start()
@@ -23,12 +24,12 @@ require("channels")
 
 import { addOptionInput } from "packs/addOptionInput"
 
-document.addEventListener("turbolinks:load", ()=> {
-    
+document.addEventListener("turbolinks:load", () => {
+
     if (document.querySelector(".listForm")) {
         console.log('in app.js')
         addOptionInput()
-      
+
     }
     console.log('outside app.js')
-  })
+})
