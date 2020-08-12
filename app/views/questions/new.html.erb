@@ -1,5 +1,5 @@
-<h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
+<%# <h1>Questions#new</h1>
+<p>Find me in app/views/questions/new.html.erb</p> %>
 <div class="container mb-5">
 
 <% if @question.errors.any? %>
@@ -14,7 +14,7 @@
   </div>
 <% end %>
 
-<div>
+<div class="card-body mt-4">
   <%= form_for @question do |q| %>
     <div class="form-row">
       <h5><%= q.label :question_text, "Question" %></h5>
@@ -23,15 +23,14 @@
       <%= q.text_field :question_text, class: "form-control", placeholder: "Should I...? (Required)" %>
     </div>
 
-    <hr>
+    <hr class="hr-new">
 
-    <div class="form-row">
+    <div class="form-row mb-2">
      <h5> <%= q.label :description, "Description" %> </h5>
       <%= q.text_area :description, class: "form-control", placeholder: "(Optional)" %>
     </div>
     
-
-    <hr>
+    <%# <hr class="hr-new"> %>
 
     <div class="form-row">
       <h5><%= q.label :expiry_date, "Expiry Date" %></h5>
@@ -41,31 +40,32 @@
     <br>
       <div class="badge badge-danger">Poll must be opened at least  1 hour from current time</div>
 
-      <div class="form-row mt-3">
+      <div class="form-row">
       <%= q.datetime_local_field :expiry_date, min: (Time.now + 1*60*60).strftime("%d-%m-%YT%H:%M"), value:"#{(Time.now + 1*60*60).strftime("%Y-%m-%dT%H:%M")}", class: "datetime-box" %>
 
     </div>
     
-    <hr>
+    <hr class="hr-new">
+
     <div class="form-row">
         <h5><%= q.label :question_images, "Upload Images" %> </h5>
     </div>
     <div class="form-row">
         <%= q.file_field :question_images, multiple: true, direct_upload: true, class: "btn btn-dark btn-sm form-width" %>
       </div>
-    <hr>
+    <hr class="hr-new">
 
     <h5> Category </h5>
     <%# <input  class="form-control mb-2" type="text" name="cat_type" 
     placeholder="category">  %>
 
-  <div class="form-row my-4">
+  <div class="form-row my-3">
     <%= q.fields_for :category, @question.build_category do |f| %>
     <%= f.text_field :cat_type, class: "form-control", placeholder: "food" %>
     <% end %>
   </div>
   
-  <hr>
+  <hr class="hr-new">
 
     <h5> Options </h5>
 
@@ -91,9 +91,10 @@
 
       <button class="btn btn-sm btn-warning mb-2" id="addMore">Add Options</button>
 
-<hr class="my-3">
+<hr class="hr-new my-3">
 
     <%= q.submit "Submit", class: "btn btn-success btn-sm px-4" %>
     <%= link_to  "Cancel", questions_path, class:"btn btn-danger btn-sm px-4" %>
     <% end %>
+</div>
 </div>

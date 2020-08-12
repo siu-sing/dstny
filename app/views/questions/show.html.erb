@@ -1,21 +1,22 @@
-<h1>Questions#show</h1>
-<p>Find me in app/views/questions/show.html.erb</p>
+<%# <h1>Questions#show</h1>
+<p>Find me in app/views/questions/show.html.erb</p> %>
 <div class="container">
 
-	<div class="card mt-2">
+	<div class="card mt-4">
 		<div class="card-header">
 			<div class="row">
-				<div class="col-md-6 text-left">
+				<div class="col-md-8 text-left">
 					<h5>
 						<% if @question.user.avatar.attached? %>
 						<%= image_tag @question.user.avatar, class: "rounded-circle", height: 50 %>
 						<% else %>
-						<%= image_tag "/default_avatar.png",  height: 50 %>
+						<%= image_tag "/default_avatar.png",  height: 50, class:"def-ava" %>
 						<% end %>
 						<%= @question.user.username %> asks...
 					</h5>
 				</div>
-				<div class="col-md-6 text-right">
+				<div class="col-md-4 text-right">
+				<% if user_signed_in? %>
 					<% if current_user == @question.user || current_user.admin? %>
 					<%= link_to 'Elaborate?', edit_question_path(@question), class: "btn btn-warning btn-sm" %>
 					<%= link_to 'Delete', question_path(@question), method: "delete", data: {title: 'Delete Poll', confirm: 'Are you sure?'} , class: "btn btn-danger btn-sm" %>
@@ -27,6 +28,7 @@
 					<% end %>
 
 					<% end %>
+				<% end %>
 				</div>
 			</div>
 		</div>
@@ -46,13 +48,18 @@
 					<% end %>
 				</div>
 			</div>
-			<% if user_signed_in? %>
+			
+			<% if @category.cat_type != "" %>
+			<p class="card-text small">
+				<%= link_to @category.cat_type, category_path(@category.id) %>
+			</p>
+			<% end %>
+		
+
+		<% if user_signed_in? %>
     			<div class="small text-right">
 				<%= link_to "Flag as Inappropriate", questions_flag_path(question_id: @question.id), method: "post" %>
 			</div>
-			<% end %>
-			<% if @category.cat_type != "" %>
-			<p class="card-text">#<%= link_to @category.cat_type, category_path(@category.id) %> </p>
 			<% end %>
 		</div>
 
@@ -115,7 +122,7 @@
 	<% if votersArr.any? %>
 	<div class="card">
 
-		<div class="card body py-2">
+		<div class="card body py-2" style="background-color:#faf3dd" >
 			<% @options.each do |o| %>
 
 			<div class="container my-2">

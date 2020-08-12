@@ -25,7 +25,7 @@ body{
     margin:0; 
     position:relative; 
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(rgba(251, 251, 242,.6), rgba(251, 251, 242,.6)),url('/iconlife.jpg');
+    background: linear-gradient(rgba(251, 251, 242,.8), rgba(251, 251, 242,.8)),url('/iconlife.jpg');
 }
 
 body::after{ content:''; display:block; height:100px; }
@@ -36,14 +36,17 @@ body::after{ content:''; display:block; height:100px; }
     /* padding-bottom: -10px; */
 }
 
-.card-header, .card-footer {
+.card-header {
     /* background:#264653; */
     background:#0f4c5c;
 }
 
-.card-header{
-    color:#fca311;
+.card-footer {
+    /* background:#264653; */
+    background-color:rgba(80, 157, 143,0.7);
 }
+
+
 
 .card-body {
     /* background: #e5e5e5; */
@@ -51,6 +54,33 @@ body::after{ content:''; display:block; height:100px; }
     /* background-color: #fcf5c7; */
 }
 
+.card-header h5{
+    color:#fcbf49 !important;
+}
+
+/* .card-index a {
+    color:black !important;
+    text-decoration: none !important
+  }
+
+
+} */
+  .cat-index,.cat-index a{
+    color: #0f4c5c !important;
+}
+
+.cat-index a:hover{
+    color: grey!important;
+
+}
+
+.def-img{
+    border-radius:50%;
+    width: 50px;
+    object-fit: cover;
+    margin-bottom: -5px;
+    margin-right: 5px;
+}
 
 .def-ava {
     background-color: #FFF;
@@ -59,7 +89,9 @@ body::after{ content:''; display:block; height:100px; }
     margin-right: 5px;
 }
 
-
+.hr-new{
+    border: 1px solid transparent;
+}
 
 .jumb-anim {
         /* background-color: #DDDDDD; */
@@ -151,12 +183,9 @@ body::after{ content:''; display:block; height:100px; }
     width: 100%;
 } */
 
-.rmbr-me {
-    display: flex;
-    justify-content: center;
-}
 
-.field input, textarea{
+
+.auth-inp input, textarea{
     width: 100%;
     margin-bottom: 20px;
 }
