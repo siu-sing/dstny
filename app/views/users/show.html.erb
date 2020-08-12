@@ -9,16 +9,17 @@
             <% end %>
         </div>
     </div>
+
     <div class="row">
         <div class="col">
             <h1> <%= @user.username %> </h1>
-            <%= @user.email %> <br>
+                <%= @user.email %> <br>
             <i><%= @user.profile_description %> <br></i>
         </div>
     </div>
 
     <br>
-    #
+    
     <% if @user.questions.any? %>
     <div class="row">
         <div class="col">
@@ -36,13 +37,12 @@
     <% @user.questions.each do |ques| %>
     <div class="card mt-2">
         <h3 class="card-header"> <%= link_to ques.question_text, question_path(ques) %> </h3>
-        <div class="card-body">
-            <p class="card-text"> <%= ques.description %> </p>
+            <p class="card-title"> <%= ques.description %> </p>
 
                 <% votersArr = [] %>
                 <% ques.options.each do |o| %>
                 <% votersArr = votersArr + o.voters %>
-    <% end %>
+            <% end %>
 
             <% if votersArr.any? %>
                 <% ques.options.each do |o| %>

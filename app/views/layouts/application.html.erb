@@ -42,15 +42,6 @@
                 <li class="nav-item">
                     <%= link_to  "Categories", categories_path(@categories), class:"nav-link"%>
                 </li>
-                <li class="nav-item">
-                    
-                    <% if user_signed_in? %>
-                    <% if current_user.admin? %>
-                    <%= link_to  "Admin",  class:"nav-link"%>
-                    <% end %>
-                    <% end %>
-                
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,6 +71,13 @@
                 <%#= current_user.email %>
                 <li class="nav-item">
                     <%= link_to current_user.username, user_path(current_user), class:"nav-link mx-2" %>
+                </li>
+                <li class="nav-item">
+                    <% if user_signed_in? %>
+                    <% if current_user.admin? %>
+                    <%= link_to  "(Admin)", categories_path(@categories), class:"nav-link"%>
+                    <% end %>
+                    <% end %>
                 </li>
 
                 <li class="nav-item">
