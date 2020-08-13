@@ -39,9 +39,9 @@
 
 	<%# edit comments partial  %>
 	<%= render  "editcomment", comment: comment %>
-
+    <%# <div class="mb-4"> %>
 	<small class="text-muted"> Posted <%= time_ago_in_words(comment.created_at) %> ago </small>
-
+    <%# </div> %>
 	<%# edit and delete buttons  %>
 	<% if user_signed_in?%>
 	<% if comment.user_id == current_user.id %>
@@ -52,7 +52,7 @@
 	</span>
 	<% end %>
 
-	<hr>
+	<hr id="a">
 	<% end %>
 
 	<% end %>
