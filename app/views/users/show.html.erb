@@ -18,7 +18,7 @@
 	</div>
 	<br>
 
-
+<% if @user.questions.any? %>
 	<div class="row">
 		<div class="col">
 			<% if current_user %>
@@ -32,7 +32,7 @@
 			<% end %>
 		</div>
 	</div>
-
+<% end %>
 
 
 
