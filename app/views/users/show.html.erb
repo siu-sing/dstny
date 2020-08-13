@@ -40,7 +40,7 @@
         <% @user.questions.each do |ques| %>
             <div class="col-md-12 my-3">
                 <div class="card">
-                    <h5 class="card-header">
+                    <h5 class="card-header user-poll-links">
                         <%= link_to ques.question_text, question_path(ques) %>
                     </h5>
                     <div class="card-body">
