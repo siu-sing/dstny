@@ -99,7 +99,6 @@ Database is hosted here: dstny.herokuapp.com/
 <img src="./public/usersl.png">
 <img src="./public/fusersquestionsedit.png">
 <img src="./public/questionsV.png">
-<img src="./public/trello.jpg">
 
 #### Furthers
 - Set deadline for poll (completed)
@@ -120,3 +119,9 @@ Database is hosted here: dstny.herokuapp.com/
 #### Bugs & Issues Faced
 - Pull requests required entire team effort to resolve due to overlapping conflicts
 - link_to overwrote clickable container 
+
+#### Screen Captures
+<img src="./signup.png">
+<img src="./signin.png">
+<img src="./landing.png">
+<img src="./public/trello.jpg">
