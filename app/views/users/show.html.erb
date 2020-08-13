@@ -1,19 +1,19 @@
 <div class="container">
 
-    <div class="row mt-3">
+    <div class="row mt-5">
         <div class="col">
             <% if @user.avatar.attached? %>
-                <%= image_tag @user.avatar, class: "rounded-circle", height: 50 %> <br>
+                <%= image_tag @user.avatar, class: "rounded-circle", height: 100,  class:"def-img-prof" %> <br>
             <% else %>
-                <%= image_tag "/default_avatar.png",  height: 50 %> <br>
+                <%= image_tag "/default_avatar.png",  height: 100, class:"def-ava" %> <br>
             <% end %>
         </div>
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col user-bio">
             <h1> <%= @user.username %> </h1>
-                <%= @user.email %> <br>
+                <a href="mailto:<%= @user.email %>"><%= @user.email %></a> <br>
             <i><%= @user.profile_description %> <br></i>
         </div>
     </div>
@@ -25,28 +25,35 @@
         <div class="col">
             <% if current_user %>
                 <% if current_user.id == @user.id %>
-                    <h3><strong> Your polls </strong></h3>
+                    <h4><strong> Your polls </strong></h4>
                 <% else %>
-                    <h3><strong> <%= @user.username %>'s polls </strong></h3>
+                    <h4><strong> <%= @user.username %>'s polls </strong></h4>
                 <% end %>
             <% end %>
         </div>
     </div>
+    
 
-
+ <div class="row row-cols-1 row-cols-md-2">
     <% @user.questions.each do |ques| %>
+    <div class="user-poll-links">
+    <div class="col md-6">
+    
     <div class="card mt-2">
-        <h3 class="card-header"> <%= link_to ques.question_text, question_path(ques) %> </h3>
+    <div class="card-header">
+        <h3> <%= link_to ques.question_text, question_path(ques) %> </h3>
             <p class="card-title"> <%= ques.description %> </p>
-
+    </div>
                 <% votersArr = [] %>
                 <% ques.options.each do |o| %>
                 <% votersArr = votersArr + o.voters %>
             <% end %>
 
             <% if votersArr.any? %>
+            <div class="card body py-2">
                 <% ques.options.each do |o| %>
-                    <div class="my-3">
+                    
+                    <div class="container my-2">
                         <%= o.option_text %>
                         <% bar_len = ((o.votes.to_f / votersArr.length.to_f) * 100).round %>
                             <div class="progress">
@@ -57,12 +64,14 @@
                         <% end %>
                      </div>
                 <% end %>
+        
         </div>
         <% end %>
 
     </div>
     <% end %>
     <% end %>
-
-
+    </div>
+</div>
+</div>
 </div>

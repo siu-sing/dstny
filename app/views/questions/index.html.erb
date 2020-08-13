@@ -23,9 +23,9 @@
 	<div class="row row-cols-1 row-cols-md-2">
 		<% @questions.each do |ques| %>
 
-		<div class="col mb-6">
+		<div class="col md-6">
 		<%# <%= link_to question_path(ques.id) do %> 
-			<div class="card-index mb-2">
+			<div class="card-index mb-4">
 			
 				<div class="card-header">
 					<div class="row">
@@ -49,7 +49,7 @@
 				<%#= link_to question_path(ques.id) do %>
 
 					<h6 class="card-title"><%= ques.question_text %></h6>
-					<span class="badge badge-warning"> <%= link_to"##{ques.category.cat_type}", category_path(ques.category.id) %> </span> <br>
+					<span class="badge badge-warning cat-index"> <%= link_to"##{ques.category.cat_type}", category_path(ques.category.id) %> </span> <br>
 					<small class="card-text">Expires: <%= ques.expiry_date.strftime('%d %b %Y, %I:%M%p') %></small>
 
 				</div>

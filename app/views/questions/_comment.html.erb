@@ -1,11 +1,14 @@
 <% @question.comments.each do |comment| %>
 
 <p>
-	<% if comment.user.avatar.attached? %>
-	<%= image_tag comment.user.avatar, class: "rounded-circle", height: 25 %>
-	<% else %>
-	<%= image_tag "/default_avatar.png",  height: 25 %>
-	<% end %>
+	 <% if comment.user.avatar.attached? %>
+					<%= image_tag comment.user.avatar, class: "rounded-circle", height: 30, class:"def-com-img" %>
+					<% else %>
+					<%= image_tag "/default_avatar.png",  height: 30, class:"def-ava" %>
+		<% end %>
+        <% if comment.question.user_id == comment.user_id %>
+        <span class="badge badge-dark mb-1">OP</span>
+        <% end %>
 	<strong class="ml-1"><%= comment.user.username%> says ...</strong>
 </p>
 
