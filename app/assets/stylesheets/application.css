@@ -31,11 +31,7 @@ body::after{ content:''; display:block; height:100px; }
 
 
 
-.jumb-bg{
-    background: #001524;
-    /* margin:  0 4rem; */
-    /* padding-bottom: -10px; */
-}
+
 
 .card-header {
     /* background:#264653; */
@@ -90,34 +86,72 @@ body::after{ content:''; display:block; height:100px; }
 
 
 
-/* @media screen and (min-width: 400px) { */
-.jumb-anim {
-        background-color: #DDDDDD;
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: 2rem;
-        font-weight:  100;
-        letter-spacing: 2px;
-        margin: -10px auto;
-        /* margin-bottom: -50px; */
-        /* text-align: center; */
-        color: #f35626;
-        background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -webkit-animation: hue 10s infinite linear;
+.jumb-bg{
+    background: #001524;
+    /* background: white; */
+    /* margin:  0 4rem; */
+    /* padding-bottom: -10px; */
 }
 
 
+
+.jumb-anim {
+    /* background-color: #DDDDDD; */
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+    font-weight:  100;
+    letter-spacing: 2px;
+    margin: -10px auto;
+    /* margin-bottom: -50px; */
+    /* text-align: center; */
+    color: #f35626;
+    background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: hue 10s infinite linear;
+}
+
 @-webkit-keyframes hue {
     from {
-      -webkit-filter: hue-rotate(0deg);
+    -webkit-filter: hue-rotate(0deg);
     }
     to {
-      -webkit-filter: hue-rotate(-360deg);
+    -webkit-filter: hue-rotate(-360deg);
     }
-  }
-/* } */
-  
+}
+
+
+@media screen and (max-width: 500px) { 
+    .jumb-bg{
+        /* background: #001524; */
+        background: #001524;
+        /* position: relative;
+        z-index: -2; */
+        /* margin:  0 4rem; */
+        /* padding-bottom: -10px; */
+    }
+
+
+    .jumb-anim {
+        display: none;
+    }
+
+    .mobile-jumbo {
+        padding-top: 15px;
+        margin-bottom: -2px;
+        background:  #001524;
+        text-align: center;
+    }
+    .mb-jumbo-lead:before {
+        color: #fcbf49;
+        content: "Sick of Decisions?";
+    }
+    .mb-jumbo-follow:before {
+        color: #fcbf49;
+        content: "Let us render your destiny today!";
+    }
+
+    }
 
 
 
