@@ -104,10 +104,6 @@ class QuestionsController < ApplicationController
   end
 
   def search
-    puts "@@@@@@@@@@@@@@@@@"
-    puts params[:search_term]
-    puts "@@@@@@@@@@@@@@@@@"
-
     @parameter = params[:search_term].downcase
 
     @questions = Question.where(
@@ -117,6 +113,14 @@ class QuestionsController < ApplicationController
         "description ~* :parameter", parameter: "(\\m#{@parameter}\\M)",
       )
     )
+
+    @categories = Category.where(
+      "cat_type ~* :parameter", parameter: "(\\m#{@parameter}\\M)",
+    )
+
+    # @users = User.where(
+    #   "username ~* :parameter", parameter: "(\\m#{@parameter}\\M)",
+    # )
   end
 
   private
