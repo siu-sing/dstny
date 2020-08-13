@@ -4,10 +4,12 @@
         <%= f.text_area :comment_text, class:"form-control" %>
     </p>
     <div class="form-row">
-        <%= f.label :comment_images, "Images" %>
+            <%= f.label :comment_images, "Upload Images" %>
+    </div>
+    <div class="form-row">
         <%= f.file_field :comment_images, multiple: true, direct_upload: true, class: "btn btn-dark btn-sm" %>
     </div>
     <p>
-        <%= f.submit 'Comment', class:"btn btn-success btn-sm ml-2" %>
+        <%= f.submit 'Comment', class:"btn btn-success btn-sm ml-2 my-3" %>
     </p>
 <% end %>
