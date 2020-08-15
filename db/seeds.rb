@@ -90,6 +90,7 @@ end
 
 q_seed.each_with_index do |q, idx|
   Question.create!(
+
     question_text: q["question_text"],
     description: q["description"],
     expiry_date: Time.now + rand(6) * 60 * 60,
